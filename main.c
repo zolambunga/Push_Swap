@@ -1,6 +1,17 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: zombunga <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/09/25 20:16:25 by zombunga          #+#    #+#             */
+/*   Updated: 2024/09/25 22:30:46 by zombunga         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <stdio.h>
-#include <stdarg.h>
-#include <stdlib.h>
+#include "push_swap.h"
 
 typedef struct s_stack{
 	int		nbr;
@@ -8,57 +19,87 @@ typedef struct s_stack{
 	struct s_stack	*next;
 } t_stack;
 
-t_stack	*create_node(t_stack *list, int n)
+t_stack	*create_node(int n)
 {
-	static t_stack	*head;
+	t_stack	*list;
 
 	list = (t_stack *)malloc(sizeof(t_stack));
+	if (!list)
+		exit(1);
 	list->nbr = n;
-	//list->previous = list;
-	list->next = head;
-	head = list;
-	return (head);
+	list->next = NULL;
+	list->previous = NULL;
+	return (list);
 }
 
 t_stack	*recieve_args(int ac, char **args)
 {
-	int	i;
-	t_stack	*list;
+	int		i;
+	t_stack	*new_node;
 	t_stack	*head;
+	t_stack	*tail;
 
+	head = NULL;
+	tail = NULL;
 	i = 1;
 	while (i <= ac)
 	{
-		head = create_node(list, atoi(args[i]));
-		//printf("A: %d\n", list->nbr);
-		//printf("previous actual: %d\n", list->previous->nbr);
+		new_node = create_node(atoi(args[i]));
+		if (head == NULL)
+		{
+			head = new_node;
+			tail = new_node;
+		}
+		else
+		{
+			tail->next = new_node;
+			new_node->previous = tail;
+			tail = new_node;
+		}
 		i++;
 	}
-	/*printf("\nSaída\nValor de i antes do loop: %d\n\n", i);
-	while (i > 1)
-	{
-		printf("entrei no loop [%d]\n", i);
-		list = list->previous;
-		printf("Prev: %d\n", list->nbr);
-		i--;
-	}*/
 	return (head);
 }
 
 int	main(int ac, char **av)
 {
+	int		i;
 	t_stack	*a;
+	t_stack	*first;
+	t_stack	*last;
+	t_stack	*tmp;
 
+	i = ac - 1;
 	if (ac == 1)
 		return (1);
-	a = recieve_args((ac - 1), av);
-	
+	ft_verify_args(av + 1);
+	a = recieve_args(i, av);
 	while (a != NULL)
 	{
 		printf("FIM! %d\n", a->nbr);
+		last = a;
 		a = a->next;
 	}
-	
-	//printf("FIM2! %d\n", a->nbr);
+	a = last;
+	while (a)
+	{
+		printf("Reverse! %d\n", a->nbr);
+		first = a;
+		a = a->previous;
+		i--;
+	}
+	a = first;
+	/*while (a != NULL)
+	{
+		printf("FIM! %d\n", a->nbr);
+		last = a;
+		a = a->next;
+	}*/
+	while (a)
+	{
+		tmp = a->next;
+		free(a);
+		a = tmp;
+	}
 	return (0);
 }

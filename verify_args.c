@@ -6,11 +6,12 @@
 /*   By: zombunga <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 20:11:23 by zombunga          #+#    #+#             */
-/*   Updated: 2024/09/25 21:50:11 by zombunga         ###   ########.fr       */
+/*   Updated: 2024/09/26 14:16:14 by zombunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+#include "./libft/libft.h"
 
 int	ft_isnvalid(int c)
 {
@@ -19,13 +20,20 @@ int	ft_isnvalid(int c)
 	return (0);
 }
 
-void	ft_verify_args(char **av)
+char	**ft_verify_args(char **av)
 {
 	int	i;
 	int	j;
-
+	//char	**mat;
+	
 	i = 0;
 	j = 0;
+	while (av[i])
+	{
+		av = ft_split(av[i], ' ');
+		i++;
+	}
+	i = 0;
 	while (av[i])
 	{
 		j = 0;
@@ -37,4 +45,5 @@ void	ft_verify_args(char **av)
 		}
 		i++;
 	}
+	return (av);
 }

@@ -1,19 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_error.c                                         :+:      :+:    :+:   */
+/*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zombunga <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: zombunga <zombunga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/25 22:40:07 by zombunga          #+#    #+#             */
-/*   Updated: 2024/09/26 13:52:01 by zombunga         ###   ########.fr       */
+/*   Created: 2024/05/23 23:27:18 by zombunga          #+#    #+#             */
+/*   Updated: 2024/05/23 23:27:22 by zombunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
-void	ft_error()
+void	*ft_memcpy(void *dest, const void *src, size_t n)
 {
-	write(2, "Error\n", 6);
-	exit(1);
+	const char	*psrc = (const char *)src;
+	char		*pdest;
+
+	pdest = (char *)dest;
+	while (n-- > 0)
+		*pdest++ = *psrc++;
+	return (dest);
 }

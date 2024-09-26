@@ -6,12 +6,13 @@
 /*   By: zombunga <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 20:16:25 by zombunga          #+#    #+#             */
-/*   Updated: 2024/09/25 22:30:46 by zombunga         ###   ########.fr       */
+/*   Updated: 2024/09/26 13:49:52 by zombunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include "push_swap.h"
+#include "./libft/libft.h"
 
 typedef struct s_stack{
 	int		nbr;
@@ -72,8 +73,11 @@ int	main(int ac, char **av)
 	i = ac - 1;
 	if (ac == 1)
 		return (1);
-	ft_verify_args(av + 1);
+	av = ft_verify_args(av + 1);
 	a = recieve_args(i, av);
+	i = 0;
+	while (i++)
+		free(av[i]);
 	while (a != NULL)
 	{
 		printf("FIM! %d\n", a->nbr);

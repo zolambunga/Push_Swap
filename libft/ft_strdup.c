@@ -1,19 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_error.c                                         :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zombunga <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: zombunga <zombunga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/25 22:40:07 by zombunga          #+#    #+#             */
-/*   Updated: 2024/09/26 13:52:01 by zombunga         ###   ########.fr       */
+/*   Created: 2024/05/23 23:26:08 by zombunga          #+#    #+#             */
+/*   Updated: 2024/05/23 23:26:10 by zombunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
-void	ft_error()
+char	*ft_strdup(const char *s1)
 {
-	write(2, "Error\n", 6);
-	exit(1);
+	char	*rtn;
+	size_t	len;
+
+	len = ft_strlen(s1) + 1;
+	rtn = malloc(sizeof(char) * len);
+	if (!rtn)
+		return (0);
+	rtn = ft_memcpy(rtn, s1, len);
+	return (rtn);
 }

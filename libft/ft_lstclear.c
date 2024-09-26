@@ -1,19 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_error.c                                         :+:      :+:    :+:   */
+/*   ft_lstclear.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zombunga <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: zombunga <zombunga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/25 22:40:07 by zombunga          #+#    #+#             */
-/*   Updated: 2024/09/26 13:52:01 by zombunga         ###   ########.fr       */
+/*   Created: 2024/05/23 23:28:40 by zombunga          #+#    #+#             */
+/*   Updated: 2024/05/23 23:28:42 by zombunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
-void	ft_error()
+void	ft_lstclear(t_list **lst, void (*del)(void *))
 {
-	write(2, "Error\n", 6);
-	exit(1);
+	t_list	*t;
+	t_list	*tmp;
+
+	t = *lst;
+	while (t)
+	{
+		tmp = t->next;
+		ft_lstdelone(t, del);
+		t = tmp;
+	}
+	*lst = NULL;
 }

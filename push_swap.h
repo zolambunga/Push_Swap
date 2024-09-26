@@ -6,7 +6,7 @@
 /*   By: zombunga <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 20:11:56 by zombunga          #+#    #+#             */
-/*   Updated: 2024/09/25 21:09:32 by zombunga         ###   ########.fr       */
+/*   Updated: 2024/09/26 14:05:14 by zombunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,11 @@
 
 #include <unistd.h>
 #include <stdlib.h>
+#include <string.h>
 
-void	ft_error();
-void	ft_verify_args(char **av);
-
+void		ft_error();
+char		**ft_split(char const *s, char c);
+char		**ft_verify_args(char **av);
+size_t		ft_strlcpy(char *dst, const char *src, size_t size);
+	
 #endif

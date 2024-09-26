@@ -1,19 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_error.c                                         :+:      :+:    :+:   */
+/*   ft_toupper.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zombunga <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: zombunga <zombunga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/25 22:40:07 by zombunga          #+#    #+#             */
-/*   Updated: 2024/09/26 13:52:01 by zombunga         ###   ########.fr       */
+/*   Created: 2024/05/23 23:30:42 by zombunga          #+#    #+#             */
+/*   Updated: 2024/05/24 08:35:18 by zombunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
-void	ft_error()
+int	ft_toupper(int c)
 {
-	write(2, "Error\n", 6);
-	exit(1);
+	if (c >= 'a' && c <= 'z')
+		return (c - 32);
+	return (c);
 }

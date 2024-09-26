@@ -1,19 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_error.c                                         :+:      :+:    :+:   */
+/*   ft_isascii.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zombunga <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: zombunga <zombunga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/25 22:40:07 by zombunga          #+#    #+#             */
-/*   Updated: 2024/09/26 13:52:01 by zombunga         ###   ########.fr       */
+/*   Created: 2024/05/16 13:49:39 by zombunga          #+#    #+#             */
+/*   Updated: 2024/05/17 01:09:38 by zombunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
-void	ft_error()
+int	ft_isascii(int c)
 {
-	write(2, "Error\n", 6);
-	exit(1);
+	return ((c >= 0) && (c <= 127));
 }
+
+/*
+** int	main(void)
+** {
+** 	printf("%d\n", ft_isascii('À'));
+** 	printf("%d", isascii('À'));
+** }
+*/

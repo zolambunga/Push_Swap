@@ -6,7 +6,7 @@
 /*   By: zombunga <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 20:16:25 by zombunga          #+#    #+#             */
-/*   Updated: 2024/09/26 13:49:52 by zombunga         ###   ########.fr       */
+/*   Updated: 2024/09/26 19:41:09 by zombunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,15 @@
 #include "push_swap.h"
 #include "./libft/libft.h"
 
-typedef struct s_stack{
-	int		nbr;
-	struct s_stack	*previous;
-	struct s_stack	*next;
-} t_stack;
+size_t	ft_strlen(const char *s)
+{
+	int	i;
+
+	i = 0;
+	while (s[i])
+		i++;
+	return (i);
+}
 
 t_stack	*create_node(int n)
 {
@@ -29,7 +33,7 @@ t_stack	*create_node(int n)
 		exit(1);
 	list->nbr = n;
 	list->next = NULL;
-	list->previous = NULL;
+	list->prev = NULL;
 	return (list);
 }
 
@@ -54,7 +58,7 @@ t_stack	*recieve_args(int ac, char **args)
 		else
 		{
 			tail->next = new_node;
-			new_node->previous = tail;
+			new_node->prev = tail;
 			tail = new_node;
 		}
 		i++;
@@ -66,44 +70,16 @@ int	main(int ac, char **av)
 {
 	int		i;
 	t_stack	*a;
-	t_stack	*first;
-	t_stack	*last;
-	t_stack	*tmp;
+	t_stack	*b;
 
 	i = ac - 1;
-	if (ac == 1)
+	if (ac == 1 || (ac == 2 && !av[1][0]))
 		return (1);
-	av = ft_verify_args(av + 1);
+	ft_verify_args(av + 1);
+	if (ac == 2)
+		write(1, av[1], 2);
+	printf("\nsaiu");
 	a = recieve_args(i, av);
 	i = 0;
-	while (i++)
-		free(av[i]);
-	while (a != NULL)
-	{
-		printf("FIM! %d\n", a->nbr);
-		last = a;
-		a = a->next;
-	}
-	a = last;
-	while (a)
-	{
-		printf("Reverse! %d\n", a->nbr);
-		first = a;
-		a = a->previous;
-		i--;
-	}
-	a = first;
-	/*while (a != NULL)
-	{
-		printf("FIM! %d\n", a->nbr);
-		last = a;
-		a = a->next;
-	}*/
-	while (a)
-	{
-		tmp = a->next;
-		free(a);
-		a = tmp;
-	}
 	return (0);
 }

@@ -6,23 +6,13 @@
 /*   By: zombunga <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 20:16:25 by zombunga          #+#    #+#             */
-/*   Updated: 2024/09/26 19:41:09 by zombunga         ###   ########.fr       */
+/*   Updated: 2024/09/27 14:05:06 by zombunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include "push_swap.h"
 #include "./libft/libft.h"
-
-size_t	ft_strlen(const char *s)
-{
-	int	i;
-
-	i = 0;
-	while (s[i])
-		i++;
-	return (i);
-}
 
 t_stack	*create_node(int n)
 {
@@ -73,13 +63,19 @@ int	main(int ac, char **av)
 	t_stack	*b;
 
 	i = ac - 1;
-	if (ac == 1 || (ac == 2 && !av[1][0]))
-		return (1);
-	ft_verify_args(av + 1);
-	if (ac == 2)
-		write(1, av[1], 2);
+	av = ft_verify_args(ac, av + 1);
 	printf("\nsaiu");
-	a = recieve_args(i, av);
+	if (!is_sorted(av))
+	{
+		printf("IS_NOT_SORTED!");
+		a = recieve_args(i, av);
+	}
 	i = 0;
+	while (i < 6)
+	{
+		printf("||%d||\n", a->nbr);
+		a = a->next;
+		i++;
+	}
 	return (0);
 }

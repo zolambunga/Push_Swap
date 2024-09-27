@@ -6,13 +6,23 @@
 /*   By: zombunga <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 20:16:25 by zombunga          #+#    #+#             */
-/*   Updated: 2024/09/27 14:05:06 by zombunga         ###   ########.fr       */
+/*   Updated: 2024/09/27 16:31:40 by zombunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include "push_swap.h"
 #include "./libft/libft.h"
+
+static int	ft_matlen(char **av)
+{
+	int	i;
+
+	i = 0;
+	while (av[i])
+		i++;
+	return (i);
+}
 
 t_stack	*create_node(int n)
 {
@@ -36,8 +46,8 @@ t_stack	*recieve_args(int ac, char **args)
 
 	head = NULL;
 	tail = NULL;
-	i = 1;
-	while (i <= ac)
+	i = 0;
+	while (i < ac)
 	{
 		new_node = create_node(atoi(args[i]));
 		if (head == NULL)
@@ -61,21 +71,25 @@ int	main(int ac, char **av)
 	int		i;
 	t_stack	*a;
 	t_stack	*b;
+	t_stack	*tmp;
 
 	i = ac - 1;
 	av = ft_verify_args(ac, av + 1);
 	printf("\nsaiu");
-	if (!is_sorted(av))
+	i = ft_matlen(av);
+	if (is_not_sorted(av))
 	{
-		printf("IS_NOT_SORTED!");
+		printf("\nIS_NOT_SORTED!\n");
 		a = recieve_args(i, av);
 	}
 	i = 0;
-	while (i < 6)
+	printf("\npara tmp\n");
+	tmp = a;
+	while (tmp)
 	{
-		printf("||%d||\n", a->nbr);
-		a = a->next;
-		i++;
+		printf("||%d||\n", tmp->nbr);
+		tmp = tmp->next;
 	}
+	ft_free(av, a);
 	return (0);
 }

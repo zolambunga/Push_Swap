@@ -6,14 +6,14 @@
 /*   By: zombunga <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 20:11:23 by zombunga          #+#    #+#             */
-/*   Updated: 2024/09/27 14:47:33 by zombunga         ###   ########.fr       */
+/*   Updated: 2024/09/27 16:15:26 by zombunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 #include "../libft/libft.h"
 
-int	is_sorted(char **av)
+int	is_not_sorted(char **av)
 {
 	int	i;
 	int	j;
@@ -26,11 +26,12 @@ int	is_sorted(char **av)
 		while (av[j])
 		{
 			if (ft_atoi(av[i]) > ft_atoi(av[j]))
-				return (0);
+				return (1);
 			j++;
 		}
 		i++;
 	}
+	ft_free(av, NULL);
 	exit(0);
 }
 
@@ -77,7 +78,7 @@ char	**ft_verify_args(int ac, char **av)
 {
 	int	i;
 	int	j;
-	
+
 	i = 0;
 	j = 0;
 	if (ft_isnvalid(av))
@@ -90,20 +91,10 @@ char	**ft_verify_args(int ac, char **av)
 	}
 	else if (ac == 2)
 		av = ft_split(av[0], ' ');
-	/*if (ac == 1 || (ac == 2 && ft_strchr(av[0], ' ')) || (ac == 2 && av[0] != ""))
-	{
-		printf("ao sair av[0]=|%s|", av[0]);
-		exit(1);
-	}*/
 	check_duplicates(av, 0, 0);
 	while(av[i])
 	{
-		j = 0;
-		while (av[i][j])
-		{
-			printf("depois do único =>> |%c|\n", av[i][j]);
-			j++;
-		}
+		printf("depois do único =>> |%s|\n", av[i]);
 		i++;
 	}
 	return (av);

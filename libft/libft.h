@@ -6,7 +6,7 @@
 /*   By: zombunga <zombunga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 14:52:18 by zombunga          #+#    #+#             */
-/*   Updated: 2024/05/24 05:32:55 by zombunga         ###   ########.fr       */
+/*   Updated: 2024/10/01 13:35:42 by zombunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ char				*ft_strdup(const char *s);
 char				*ft_substr(char const *s, unsigned int start, size_t len);
 char				*ft_strjoin(char const *s1, char const *s2);
 char				*ft_strtrim(const char *s1, const char *set);
+char				*ft_strtok(char *str, const char *delim);
 char				*ft_strnstr(const char *big, const char *little,
 						size_t len);
 char				**ft_split(char const *s, char c);

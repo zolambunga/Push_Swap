@@ -14,58 +14,57 @@
 
 static int	numwords(char **s, char c)
 {
+	printf("\n\033[31m numwords \033[0m\n");
 	int	i;
-	int	cur;
 	int	word_num;
+	char	*token;
 
 	i = 0;
 	word_num = 0;
 	while (s[i])
 	{
-		cur = 0;
-		while (s[i][cur] != 0)
+		token = ft_strtok(s[i], &c);
+		while (token)
 		{
-			if (s[i][cur] != c && (s[i][cur + 1] == c || s[i][cur + 1] == 0))
-				word_num++;
-			cur++;
+			word_num++;
+			printf("\n\033[32m token %d : %s \033[0m\n", i, token);
+			token = ft_strtok(NULL, &c);
 		}
 		i++;
+		//printf("\n\033[32m sai de i %d : %s \033[0m\n", i, token);
 	}
+	printf("\n\033[32m wordnum %d \033[0m\n", word_num);
 	return (word_num);
 }
 
-static int	split_words(char **result, char **s, char c, int word)
+static int	split_words(char **result, char **s, char c)
 {
+	printf("\n\033[31m split_words \033[0m\n");
 	int	i;
-	int	start_cur;
-	int	end_cur;
+	int	word;
+	char	*token;
 
+	word = 0;
 	i = 0;
-	start_cur = 0;
 	while (s[i])
 	{
-		end_cur = 0;
-		while (s[i][end_cur])
+		token = ft_strtok(s[i], &c);
+		while (token)
 		{
-			if (s[i][end_cur] == c || s[i][end_cur] == 0)
-				start_cur = end_cur + 1;
-			if (s[i][end_cur] != c && (s[i][end_cur + 1] == c || s[i][end_cur + 1] == 0))
+			result[word] = malloc(ft_strlen(token) + 1);
+			if (!result[word])
 			{
-				result[word] = malloc(sizeof(char) * (end_cur - start_cur + 2));
-				if (!result[word])
-				{
-					while (word++)
-						free(result[word]);
-					return (0);
-				}
-				ft_strlcpy(result[word], (s[i] + start_cur), end_cur - start_cur + 2);
-				word++;
+				while (word > 0)
+					free(result[--word]);
+				return (0);
 			}
-			end_cur++;
+			ft_strlcpy(result[word], token, (ft_strlen(token) + 1));
+			word++;
+			token = ft_strtok(NULL, &c);
 		}
 		i++;
 	}
-	result[word] = 0;
+	result[word] = NULL;
 	return (1);
 }
 
@@ -78,24 +77,34 @@ char	**ft_matsplit(char **s, char c)
 	result = malloc(sizeof(char *) * (numwords(s, c) + 1));
 	if (!result)
 		return (NULL);
-	if (!split_words(result, s, c, 0))
+	if (!split_words(result, s, c))
+	{
+		free(result);
 		return (NULL);
+	}
 	return (result);
 }
 
+// Exemplo de uso
 int main(int ac, char **av) {
-    // Matriz de strings para teste
-    char **result = ft_matsplit(av, ' ');
+    if (ac < 4) {
+        printf("Uso: ./main 1 2 \"3 4 6\" 7\n");
+        return 1;
+    }
+
+    char **result = ft_matsplit(av+1, ' '); // Passa a partir de av[3]
 
     if (result) {
-        // Imprimir resultados
-        for (int i = 0; result[i] != NULL; i++) {
-            printf("Palavra %d: %s\n", i + 1, result[i]);
-            free(result[i]); // Liberar memória de cada palavra
-        }
-        free(result); // Liberar memória da matriz de resultado
+        int i = 0;
+        while (result[i] != NULL) {
+            printf("Palavra %d: %s\n", i, result[i]);
+            //free(result[i]);  Liberar cada palavra após uso
+            i++;
+        }printf("\033[31mSAIU\033[0m");
+        free(result); // Liberar a matriz de ponteiros
     } else {
-        printf("Erro ao dividir a matriz de strings.\n");
+        printf("Erro ao dividir a string.\n");
     }
+
     return 0;
 }

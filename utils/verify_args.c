@@ -6,7 +6,7 @@
 /*   By: zombunga <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 20:11:23 by zombunga          #+#    #+#             */
-/*   Updated: 2024/09/27 16:15:26 by zombunga         ###   ########.fr       */
+/*   Updated: 2024/10/01 11:22:35 by zombunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,20 @@ int	is_not_sorted(char **av)
 	}
 	ft_free(av, NULL);
 	exit(0);
+}
+
+static int	ft_check_mat(char **av)
+{
+	int	i;
+
+	i = 0;
+	while (av[i])
+	{
+		if (ft_strlen(av[i]) == 0)
+			return (1);
+		i++;
+	}
+	return (0);
 }
 
 static int	ft_isnvalid(char **av)
@@ -84,7 +98,7 @@ char	**ft_verify_args(int ac, char **av)
 	if (ft_isnvalid(av))
 		ft_error();
 	printf("antes do único!\n");
-	if ((ac == 1) || (ac == 2 && !ft_strchr(av[0], ' ')) || (ac == 2 && av[0] == ""))
+	if ((ac == 1) || (ac == 2 && !ft_strchr(av[0], ' ')) || (ac >= 2 && ft_check_mat(av) == 1))
 	{
 		printf("ao sair de (ac == 1) || (ac == 2 && !ft_strchr(av[0], ' ')) || (ac == 2 && av[0] == '')\n");
 		exit(1);

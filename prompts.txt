@@ -1,2 +1,4 @@
 cc -g -o zola *.c
 valgrind ./zola 1 2 4 5
+sfsfs
+cc $(find . -name '*.c' ! -name 'nome_do_arquivo_a_nao_compilar') -o main

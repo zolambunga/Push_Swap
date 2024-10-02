@@ -6,7 +6,7 @@
 /*   By: zombunga <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 20:11:23 by zombunga          #+#    #+#             */
-/*   Updated: 2024/10/02 16:02:22 by zombunga         ###   ########.fr       */
+/*   Updated: 2024/10/02 16:23:53 by zombunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,5 +109,4 @@ void	**ft_verify_args(int ac, char **av)
 		printf("depois do único =>> |%s|\n", av[i]);
 		i++;
 	}
-	return (av);
 }

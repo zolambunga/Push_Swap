@@ -6,23 +6,13 @@
 /*   By: zombunga <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 20:16:25 by zombunga          #+#    #+#             */
-/*   Updated: 2024/09/27 16:31:40 by zombunga         ###   ########.fr       */
+/*   Updated: 2024/10/02 16:33:30 by zombunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include "push_swap.h"
 #include "./libft/libft.h"
-
-static int	ft_matlen(char **av)
-{
-	int	i;
-
-	i = 0;
-	while (av[i])
-		i++;
-	return (i);
-}
 
 t_stack	*create_node(int n)
 {
@@ -73,8 +63,9 @@ int	main(int ac, char **av)
 	t_stack	*b;
 	t_stack	*tmp;
 
-	i = ac - 1;
-	av = ft_verify_args(ac, av + 1);
+	av = ft_splitmat(av, ' ');
+	i = ft_matlen(av);
+	ft_verify_args(i, av + 1);
 	printf("\nsaiu");
 	i = ft_matlen(av);
 	if (is_not_sorted(av))

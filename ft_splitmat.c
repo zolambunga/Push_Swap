@@ -6,14 +6,14 @@
 /*   By: zombunga <zombunga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 23:26:39 by zombunga          #+#    #+#             */
-/*   Updated: 2024/10/02 15:56:20 by zombunga         ###   ########.fr       */
+/*   Updated: 2024/10/02 16:11:33 by zombunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./libft/libft.h"
 #include <string.h>
 
-static int	numwords(char **s, char *delim)
+static int	numwords(char **mat, char *delim)
 {
 	int		i;
 	int		word_num;
@@ -22,9 +22,9 @@ static int	numwords(char **s, char *delim)
 
 	i = 0;
 	word_num = 0;
-	while (s[i])
+	while (mat[i])
 	{
-		copy = ft_strdup(s[i]);
+		copy = ft_strdup(mat[i]);
 		token = ft_strtok(copy, delim);
 		while (token)
 		{
@@ -51,7 +51,7 @@ static int	allocate_words(char **result, char *token, char *copy, int word)
 	return (1);
 }
 
-static int	split_words(char **result, char **s, char *delim)
+static int	split_words(char **result, char **mat, char *delim)
 {
 	int		i;
 	int		word;
@@ -60,9 +60,9 @@ static int	split_words(char **result, char **s, char *delim)
 
 	word = 0;
 	i = 0;
-	while (s[i])
+	while (mat[i])
 	{
-		copy = ft_strdup(s[i]);
+		copy = ft_strdup(mat[i]);
 		token = ft_strtok(copy, delim);
 		while (token)
 		{
@@ -78,19 +78,19 @@ static int	split_words(char **result, char **s, char *delim)
 	return (1);
 }
 
-char	**ft_matsplit(char **s, char c)
+char	**ft_splitmat(char **mat, char c)
 {
 	char	**result;
 	char	delim[2];
 
-	if (!s)
+	if (!mat)
 		return (NULL);
 	delim[0] = c;
 	delim[1] = '\0';
-	result = (char **)malloc(sizeof(char *) * (numwords(s, delim) + 1));
+	result = (char **)malloc(sizeof(char *) * (numwords(mat, delim) + 1));
 	if (!result)
 		return (NULL);
-	if (!split_words(result, s, delim))
+	if (!split_words(result, mat, delim))
 	{
 		free(result);
 		return (NULL);
@@ -98,7 +98,6 @@ char	**ft_matsplit(char **s, char c)
 	return (result);
 }
 
-/*
 int	main(int ac, char **av)
 {
 	int		i;
@@ -110,7 +109,7 @@ int	main(int ac, char **av)
 		printf("\033[32m./a.out 1 \"2 3 4\" 5 6\n\033[0m");
 		return (1);
 	}
-	result = ft_matsplit(av + 1, ' ');
+	result = ft_splitmat(av + 1, ' ');
 	if (result)
 	{
 		i = 0;
@@ -126,4 +125,4 @@ int	main(int ac, char **av)
 	else
 		printf("Erro ao dividir a string.\n");
 	return (0);
-}*/
+}

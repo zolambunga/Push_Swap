@@ -6,7 +6,7 @@
 /*   By: zombunga <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 20:11:56 by zombunga          #+#    #+#             */
-/*   Updated: 2024/09/27 16:30:41 by zombunga         ###   ########.fr       */
+/*   Updated: 2024/10/02 16:04:44 by zombunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include <unistd.h>
 #include <stdlib.h>
 #include <string.h>
+#include "./libft/libft.h"
 
 typedef struct s_stack{
 	int	nbr;
@@ -25,9 +26,7 @@ typedef struct s_stack{
 
 void		ft_error();
 void		ft_free(char **av, t_stack *list);
-char		**ft_split(char const *s, char c);
-char		**ft_verify_args(int ac, char **av);
+void		**ft_verify_args(int ac, char **av);
 int		is_not_sorted(char **av);
-size_t		ft_strlcpy(char *dst, const char *src, size_t size);
 	
 #endif

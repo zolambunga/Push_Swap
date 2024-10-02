@@ -6,7 +6,7 @@
 /*   By: zombunga <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 20:11:23 by zombunga          #+#    #+#             */
-/*   Updated: 2024/10/01 11:22:35 by zombunga         ###   ########.fr       */
+/*   Updated: 2024/10/02 16:02:22 by zombunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ static void	check_duplicates(char **av, int i, int j)
 	}
 }
 
-char	**ft_verify_args(int ac, char **av)
+void	**ft_verify_args(int ac, char **av)
 {
 	int	i;
 	int	j;
@@ -103,8 +103,6 @@ char	**ft_verify_args(int ac, char **av)
 		printf("ao sair de (ac == 1) || (ac == 2 && !ft_strchr(av[0], ' ')) || (ac == 2 && av[0] == '')\n");
 		exit(1);
 	}
-	else if (ac == 2)
-		av = ft_split(av[0], ' ');
 	check_duplicates(av, 0, 0);
 	while(av[i])
 	{

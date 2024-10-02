@@ -6,11 +6,12 @@
 /*   By: zombunga <zombunga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 23:26:39 by zombunga          #+#    #+#             */
-/*   Updated: 2024/10/01 08:26:03 by zombunga         ###   ########.fr       */
+/*   Updated: 2024/10/02 09:44:46 by zombunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./libft/libft.h"
+#include <string.h>
 
 static int	numwords(char **s, char c)
 {
@@ -18,18 +19,21 @@ static int	numwords(char **s, char c)
 	int	i;
 	int	word_num;
 	char	*token;
+	char	*copy;
 
 	i = 0;
 	word_num = 0;
 	while (s[i])
 	{
-		token = ft_strtok(s[i], &c);
+		copy = ft_strdup(s[i]);
+		token = ft_strtok(copy, &c);
 		while (token)
 		{
 			word_num++;
 			printf("\n\033[32m token %d : %s \033[0m\n", i, token);
 			token = ft_strtok(NULL, &c);
 		}
+		free(copy);
 		i++;
 		//printf("\n\033[32m sai de i %d : %s \033[0m\n", i, token);
 	}
@@ -43,27 +47,33 @@ static int	split_words(char **result, char **s, char c)
 	int	i;
 	int	word;
 	char	*token;
+	char	*copy;
 
 	word = 0;
 	i = 0;
 	while (s[i])
 	{
-		token = ft_strtok(s[i], &c);
+		copy = ft_strdup(s[i]);
+		token = ft_strtok(copy, &c);
 		while (token)
 		{
 			result[word] = malloc(ft_strlen(token) + 1);
 			if (!result[word])
 			{
-				while (word > 0)
-					free(result[--word]);
+				/*while (word > 0)
+					free(result[--word]);*/
 				return (0);
 			}
 			ft_strlcpy(result[word], token, (ft_strlen(token) + 1));
+			printf("\033[31mAlocado: %s\n\033[0m", result[word]);
 			word++;
 			token = ft_strtok(NULL, &c);
+			printf("\033[36mTOKEN: %s\n\033[0m", token);
 		}
+		free(copy);
 		i++;
 	}
+	printf("\033[35m\nSAÍ DE SPLIT WORDS\n\033[0m");
 	result[word] = NULL;
 	return (1);
 }
@@ -87,10 +97,10 @@ char	**ft_matsplit(char **s, char c)
 
 // Exemplo de uso
 int main(int ac, char **av) {
-    if (ac < 4) {
+    /*if (ac < 4) {
         printf("Uso: ./main 1 2 \"3 4 6\" 7\n");
         return 1;
-    }
+    }*/
 
     char **result = ft_matsplit(av+1, ' '); // Passa a partir de av[3]
 

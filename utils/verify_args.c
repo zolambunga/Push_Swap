@@ -6,12 +6,11 @@
 /*   By: zombunga <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 20:11:23 by zombunga          #+#    #+#             */
-/*   Updated: 2024/10/03 22:55:28 by zombunga         ###   ########.fr       */
+/*   Updated: 2024/10/03 23:08:31 by zombunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
-#include "../libft/libft.h"
 
 int	ft_thereis_duplicate(char **av)
 {
@@ -27,7 +26,6 @@ int	ft_thereis_duplicate(char **av)
 		{
 			if (ft_atoi_sign(av[i]) == ft_atoi_sign(av[j]))
 			{
-				printf("\nError ft_thereis_duplicate(char **av)\n");
 				ft_free(av, NULL);
 				ft_error();
 			}
@@ -35,7 +33,6 @@ int	ft_thereis_duplicate(char **av)
 		}
 		i++;
 	}
-	printf("ft_DuPLICATE");
 	return (0);
 }
 
@@ -57,7 +54,6 @@ int	ft_issorted(char **av)
 		}
 		i++;
 	}
-	printf("\nfree do IS_SORTED\n");
 	ft_free(av, NULL);
 	exit(1);
 }
@@ -83,21 +79,16 @@ static int	ft_isvalid(char **av)
 	int	triger;
 
 	i = 0;
-	j = 0;
 	while (av[i])
 	{
 		triger = 0;
 		j = 0;
 		while (av[i][j])
 		{
-			if ((!ft_isdigit(av[i][j]) && av[i][j] != '+' && av[i][j] != '-'))
+			if ((!ft_isdigit(av[i][j]) && av[i][j] != '+' && av[i][j] != '-')
+			|| (ft_isdigit(av[i][j]) == 1 &&
+				(av[i][j + 1] == '+' || av[i][j + 1] == '-')))
 				return (0);
-			if (ft_isdigit(av[i][j]) == 1 &&
-				(av[i][j + 1] == '+' || av[i][j + 1] == '-'))
-			{
-				printf("av[i][j]: %c\nav[i][i+1]: %c\n---------\n", av[i][j], av[i][j + 1]);
-				return (0);
-			}
 			if (ft_isdigit(av[i][j]))
 				triger++;
 			j++;
@@ -118,13 +109,11 @@ void	ft_verify_args(int ac, char **av)
 	j = 0;
 	if (!ft_isvalid(av))
 	{
-		printf("\nError ft_verify_args(int ac, char **av)\n");
 		ft_free(av, NULL);
 		ft_error();
 	}
 	if (!ft_isin_accepted_nbrrange(av))
 	{
-		printf("\nError if(!ft_isin_accepted_nbrrange(av))\n");
 		ft_free(av, NULL);
 		ft_error();
 	}

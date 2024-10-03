@@ -57,7 +57,6 @@ t_stack	*recieve_args(int ac, char **args)
 int	main(int ac, char **av)
 {
 	int		i;
-	t_stack	*tmp;
 	t_stack	*a;
 	t_stack	*b;
 
@@ -66,13 +65,6 @@ int	main(int ac, char **av)
 	ft_verify_args(i, av);
 	if (!ft_thereis_duplicate(av) && !ft_issorted(av))
 		a = recieve_args(i, av);
-	printf("\npara tmp\n");
-	tmp = a;
-	while (tmp)
-	{
-		printf("||%d||\n", tmp->nbr);
-		tmp = tmp->next;
-	}
 	ft_free(av, a);
 	return (0);
 }

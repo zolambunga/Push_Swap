@@ -31,6 +31,9 @@ SRCS = ft_memset.c		\
 		ft_strlcat.c		\
 		ft_strnstr.c		\
 		ft_atoi.c		\
+		ft_atoi_sign.c		\
+		ft_atoll.c		\
+		ft_atoll_sign.c		\
 		ft_calloc.c		\
 		ft_strdup.c		\
 		ft_substr.c		\

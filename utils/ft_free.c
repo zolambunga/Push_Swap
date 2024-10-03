@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../push_swap.h"
+#include "../includes/push_swap.h"
 #include <stdio.h>
 void	ft_free(char **av, t_stack *list)
 {

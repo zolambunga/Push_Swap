@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   verify_args.c                                      :+:      :+:    :+:   */
+/*   ft_verify_args.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zombunga <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,10 +10,10 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../push_swap.h"
+#include "../includes/push_swap.h"
 #include "../libft/libft.h"
 
-int	is_not_sorted(char **av)
+int	ft_issorted(char **av)
 {
 	int	i;
 	int	j;
@@ -25,8 +25,8 @@ int	is_not_sorted(char **av)
 		j = i + 1;
 		while (av[j])
 		{
-			if (ft_atoi(av[i]) > ft_atoi(av[j]))
-				return (1);
+			if (ft_atoi_sign(av[i]) > ft_atoi_sign(av[j]))
+				return (0);
 			j++;
 		}
 		i++;
@@ -35,34 +35,55 @@ int	is_not_sorted(char **av)
 	exit(0);
 }
 
-static int	ft_check_mat(char **av)
+static int	ft_isin_accepted_nbrrange(char **av)
 {
 	int	i;
 
 	i = 0;
 	while (av[i])
 	{
-		if (ft_strlen(av[i]) == 0)
-			return (1);
+		if (ft_atoll_sign(av[i]) > INT_MAX || ft_atoll_sign(av[i]) < INT_MIN)
+			return (0);
 		i++;
 	}
-	return (0);
+	return (1);
 }
 
-static int	ft_isnvalid(char **av)
+static int	ft_isvalid(char **av)
 {
 	int	i;
 	int	j;
+	int	triger;
 
 	i = 0;
 	j = 0;
 	while (av[i])
 	{
+		triger = 0;
 		j = 0;
 		while (av[i][j])
 		{
-			if ((av[i][j] >= 58) || (av[i][j] <= 31) || av[i][j] == 33
-					|| av[i][j] == 44 || av[i][j] == 46 || av[i][j] == 47)
+			if (!ft_isdigit(av[i][j]) && av[i][j] != '+' && av[i][j] != '-')
+				return (0);
+			if (ft_isdigit(av[i][j]))
+				triger++;
+			j++;
+		}
+		if (triger == 0)
+			return (0);
+		i++;
+	}
+	return (1);
+}
+
+static int	ft_thereis_duplicate(char **av, int i, int j)
+{
+	while (av[i])
+	{
+		j = i + 1;
+		while (av[j])
+		{
+			if (ft_strcmp(av[i], av[j]) == 0)
 				return (1);
 			j++;
 		}
@@ -71,42 +92,19 @@ static int	ft_isnvalid(char **av)
 	return (0);
 }
 
-static void	check_duplicates(char **av, int i, int j)
-{
-	while (av[i])
-	{
-		j = i + 1;
-		while (av[j])
-		{
-			if (ft_strcmp(av[i], av[j]) == 0)
-			{	
-				printf("YOU DUPLICATED NUMBERS!");
-				ft_error();
-			}j++;
-		}
-		i++;
-	}
-}
-
-void	**ft_verify_args(int ac, char **av)
+void	ft_verify_args(int ac, char **av)
 {
 	int	i;
 	int	j;
 
 	i = 0;
 	j = 0;
-	if (ft_isnvalid(av))
+	if (!ft_isvalid(av))
 		ft_error();
-	printf("antes do único!\n");
-	if ((ac == 1) || (ac == 2 && !ft_strchr(av[0], ' ')) || (ac >= 2 && ft_check_mat(av) == 1))
-	{
-		printf("ao sair de (ac == 1) || (ac == 2 && !ft_strchr(av[0], ' ')) || (ac == 2 && av[0] == '')\n");
-		exit(1);
-	}
-	check_duplicates(av, 0, 0);
-	while(av[i])
-	{
-		printf("depois do único =>> |%s|\n", av[i]);
-		i++;
-	}
+	if(!ft_isin_accepted_nbrrange(av))
+		ft_error();
+	if (ac == 0 || ac == 1)
+		exit(0);
+	if (ft_thereis_duplicate(av, 0, 0))
+		ft_error();
 }

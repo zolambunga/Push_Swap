@@ -39,7 +39,7 @@ t_stack	*recieve_args(int ac, char **args)
 	i = 0;
 	while (i < ac)
 	{
-		new_node = create_node(atoi(args[i]));
+		new_node = create_node(ft_atoi_sign(args[i]));
 		if (head == NULL)
 		{
 			head = new_node;
@@ -59,28 +59,16 @@ t_stack	*recieve_args(int ac, char **args)
 int	main(int ac, char **av)
 {
 	int		i;
+	t_stack	*tmp;
 	t_stack	*a;
 	t_stack	*b;
-	t_stack	*tmp;
 
-	av = ft_splitmat(av, ' ');
+	av = ft_splitmat(av + 1, ' ');
 	i = ft_matlen(av);
-	ft_verify_args(i, av + 1);
-	printf("\nsaiu");
-	i = ft_matlen(av);
-	if (is_not_sorted(av))
-	{
-		printf("\nIS_NOT_SORTED!\n");
+	ft_verify_args(i, av);
+	if (!ft_issorted(av))
 		a = recieve_args(i, av);
-	}
-	i = 0;
-	printf("\npara tmp\n");
-	tmp = a;
-	while (tmp)
-	{
-		printf("||%d||\n", tmp->nbr);
-		tmp = tmp->next;
-	}
+	printf("\npara tmp\n");                                         tmp = a;                                                        while (tmp)                                                     {                                                                       printf("||%d||\n", tmp->nbr);                                   tmp = tmp->next;                                        }
 	ft_free(av, a);
 	return (0);
 }

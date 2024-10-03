@@ -26,7 +26,7 @@ typedef struct s_stack{
 
 void		ft_error();
 void		ft_free(char **av, t_stack *list);
-void		**ft_verify_args(int ac, char **av);
-int		is_not_sorted(char **av);
+void		ft_verify_args(int ac, char **av);
+int		ft_issorted(char **av);
 	
 #endif

@@ -12,10 +12,11 @@
 
 #include "../includes/push_swap.h"
 #include <stdio.h>
+
 void	ft_free(char **av, t_stack *list)
 {
-	int	i;
-	t_stack *aux;
+	int		i;
+	t_stack	*aux;
 
 	i = 0;
 	printf("\033[32m\nComecei o free\n\033[0m");
@@ -27,7 +28,8 @@ void	ft_free(char **av, t_stack *list)
 		i++;
 	}
 	free(av);
-	while(list)
+	printf("\033[32m\nComecei o free da lista\n\033[0m");
+	while (list)
 	{
 		aux = list->next;
 		free (list);

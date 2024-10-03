@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoll_sign.c                                          :+:      :+:    :+:   */
+/*   ft_atoll_sign.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zombunga <zombunga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -21,8 +21,8 @@ static void	iter_sign(const char *str, int *i)
 
 long long int	ft_atoll_sign(const char *str)
 {
-	int		i;
-	int		isneg;
+	int				i;
+	int				isneg;
 	long long int	nbr;
 
 	i = 0;

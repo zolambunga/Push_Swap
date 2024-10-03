@@ -11,22 +11,22 @@
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
-#define PUSH_SWAP_H
+# define PUSH_SWAP_H
 
-#include <unistd.h>
-#include <stdlib.h>
-#include <string.h>
-#include "./libft/libft.h"
+# include <limits.h>
+# include "../libft/libft.h"
 
 typedef struct s_stack{
-	int	nbr;
-	struct s_stack *prev;
-	struct s_stack *next;
-} t_stack;
+	int				nbr;
+	struct s_stack	*prev;
+	struct s_stack	*next;
+}	t_stack;
 
-void		ft_error();
-void		ft_free(char **av, t_stack *list);
+void		ft_error(void);
 void		ft_verify_args(int ac, char **av);
-int		ft_issorted(char **av);
-	
+void		ft_free(char **av, t_stack *list);
+
+int			ft_issorted(char **av);
+int			ft_thereis_duplicate(char **av);
+
 #endif

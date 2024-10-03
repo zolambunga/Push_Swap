@@ -10,9 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include "push_swap.h"
-#include "./libft/libft.h"
+#include "../includes/push_swap.h"
 
 t_stack	*create_node(int n)
 {
@@ -66,9 +64,15 @@ int	main(int ac, char **av)
 	av = ft_splitmat(av + 1, ' ');
 	i = ft_matlen(av);
 	ft_verify_args(i, av);
-	if (!ft_issorted(av))
+	if (!ft_thereis_duplicate(av) && !ft_issorted(av))
 		a = recieve_args(i, av);
-	printf("\npara tmp\n");                                         tmp = a;                                                        while (tmp)                                                     {                                                                       printf("||%d||\n", tmp->nbr);                                   tmp = tmp->next;                                        }
+	printf("\npara tmp\n");
+	tmp = a;
+	while (tmp)
+	{
+		printf("||%d||\n", tmp->nbr);
+		tmp = tmp->next;
+	}
 	ft_free(av, a);
 	return (0);
 }

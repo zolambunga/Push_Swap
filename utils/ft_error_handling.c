@@ -12,8 +12,8 @@
 
 #include "../includes/push_swap.h"
 
-void	ft_error()
+void	ft_error(void)
 {
-	write(2, "Error\n", 6);
+	write(2, "\033[31;1mError\n\033[0m", 18);
 	exit(1);
 }

@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <string.h>
 
 static int	numwords(char **mat, char *delim)
 {
@@ -39,7 +38,7 @@ static int	numwords(char **mat, char *delim)
 
 static int	allocate_words(char **result, char *token, char *copy, int word)
 {
-	result[word] = (char *)malloc(ft_strlen(token) + 1);
+	result[word] = (char *)malloc(sizeof(char) * (ft_strlen(token) + 1));
 	if (!result[word])
 	{
 		while (word > 0)

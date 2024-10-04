@@ -6,7 +6,7 @@
 /*   By: zombunga <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 20:11:23 by zombunga          #+#    #+#             */
-/*   Updated: 2024/10/03 23:08:31 by zombunga         ###   ########.fr       */
+/*   Updated: 2024/10/04 16:39:42 by zombunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,9 +85,9 @@ static int	ft_isvalid(char **av)
 		j = 0;
 		while (av[i][j])
 		{
-			if ((!ft_isdigit(av[i][j]) && av[i][j] != '+' && av[i][j] != '-')
-			|| (ft_isdigit(av[i][j]) == 1 &&
-				(av[i][j + 1] == '+' || av[i][j + 1] == '-')))
+			if ((!ft_isdigit(av[i][j]) && !ft_issign(av[i][j]))
+			|| (!ft_isdigit(av[i][j]) && !ft_isdigit(av[i][j + 1]))
+			|| (ft_isdigit(av[i][j]) == 1 && ft_issign(av[i][j + 1])))
 				return (0);
 			if (ft_isdigit(av[i][j]))
 				triger++;

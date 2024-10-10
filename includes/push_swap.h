@@ -6,7 +6,7 @@
 /*   By: zombunga <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 20:11:56 by zombunga          #+#    #+#             */
-/*   Updated: 2024/10/02 16:04:44 by zombunga         ###   ########.fr       */
+/*   Updated: 2024/10/10 11:50:22 by zombunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,21 @@ typedef struct s_stack{
 	struct s_stack	*next;
 }	t_stack;
 
+typedef struct s_struct{
+	int	i;
+	int	j;
+}	t_struct;
+
+void		ft_sort(t_stack *a, t_stack *b, int ac);
 void		ft_error(void);
 void		ft_verify_args(int ac, char **av);
 void		ft_free(char **av, t_stack *list);
+void		ra(t_stack **list);
 
-int			ft_issorted(char **av);
+int			ft_issorted(char **av, t_stack *list);
 int			ft_thereis_duplicate(char **av);
+
+
+t_stack		*ft_lst_findlast(t_stack *list);
 
 #endif

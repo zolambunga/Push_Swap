@@ -6,7 +6,7 @@
 /*   By: zombunga <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 20:11:23 by zombunga          #+#    #+#             */
-/*   Updated: 2024/10/04 16:39:42 by zombunga         ###   ########.fr       */
+/*   Updated: 2024/10/09 08:21:16 by zombunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,26 +36,48 @@ int	ft_thereis_duplicate(char **av)
 	return (0);
 }
 
-int	ft_issorted(char **av)
+int	ft_issorted(char **av, t_stack *list)
 {
-	int	i;
-	int	j;
+	t_stack		*tmp;
+	t_struct	iter;
 
-	i = 0;
-	j = 0;
-	while (av[i])
+	iter.i = 0;
+	iter.j = 0;
+	tmp = list;
+	//printf("TOP_sort\n");
+	//printf("%d\n", tmp->nbr);
+	while (av != NULL && av[iter.i])
 	{
-		j = i + 1;
-		while (av[j])
+		iter.j = iter.i + 1;
+		while (av[iter.j])
 		{
-			if (ft_atoi_sign(av[i]) > ft_atoi_sign(av[j]))
+			if (ft_atoi_sign(av[iter.i]) > ft_atoi_sign(av[iter.j]))
 				return (0);
-			j++;
+			iter.j++;
 		}
-		i++;
+		iter.i++;
 	}
-	ft_free(av, NULL);
-	exit(1);
+	//printf("%d\n", list->nbr);
+	while (tmp != NULL && tmp->next)
+	{
+		//printf("%d\n", tmp->nbr);
+		//printf("ft_issorted\n");
+		if (tmp->nbr > tmp->next->nbr)
+			return (0);
+		tmp = tmp->next;
+	}
+	/*printf("ft_issorted: bem antes do ft_free dele av1 é |%s|\n", *av);
+	printf("ft_issorted: bem antes do ft_free dele av2 é |%s|\n", *(av+1));
+	printf("ft_issorted: bem antes do ft_free dele av3 é |%s|\n", *(av+2));*/
+	
+	//ft_free(&av, list);
+	
+	//printf("ft_issorted: bem depois do ft_free ");
+	/*printf("ft_issorted: bem depois do ft_free dele av1 é |%s|\n", *av);
+	printf("ft_issorted: bem depois do ft_free dele av2 é |%s|\n", *(av+1));
+	printf("ft_issorted: bem depois do ft_free dele av3 é |%s|\n", *(av+2));*/
+	//write(1, "DEPOISdeFREE\n", 13);
+	return (1);
 }
 
 static int	ft_isin_accepted_nbrrange(char **av)

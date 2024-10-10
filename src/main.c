@@ -6,7 +6,7 @@
 /*   By: zombunga <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 20:16:25 by zombunga          #+#    #+#             */
-/*   Updated: 2024/10/02 16:33:30 by zombunga         ###   ########.fr       */
+/*   Updated: 2024/10/10 11:54:22 by zombunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,11 +60,22 @@ int	main(int ac, char **av)
 	t_stack	*a;
 	t_stack	*b;
 
+	a = NULL;
 	av = ft_splitmat(av + 1, ' ');
 	i = ft_matlen(av);
 	ft_verify_args(i, av);
-	if (!ft_thereis_duplicate(av) && !ft_issorted(av))
+	if (!ft_thereis_duplicate(av) && !ft_issorted(av, NULL))
+	{
 		a = recieve_args(i, av);
+	//	printf("\nAntes de sort\n");
+		ft_sort(a, b, i);
+	}
+	//printf("main: bem antes do ft_free dele av1 é |%s|\n", *av);
+	//printf("main: bem antes do ft_free dele av2 é |%s|\n", *(av+1));
+	//printf("main: bem antes do ft_free dele av3 é |%s|\n", *(av+2));
 	ft_free(av, a);
+//	printf("main: bem depois do ft_free dele av1 é |%s|\n", *av);
+//	printf("main: bem depois do ft_free dele av2 é |%s|\n", *(av+1));
+//	printf("main: bem depois do ft_free dele av3 é |%s|\n", *(av+2));
 	return (0);
 }

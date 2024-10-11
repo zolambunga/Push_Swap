@@ -6,7 +6,7 @@
 /*   By: zombunga <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 23:09:08 by zombunga          #+#    #+#             */
-/*   Updated: 2024/10/10 12:23:10 by zombunga         ###   ########.fr       */
+/*   Updated: 2024/10/11 14:24:53 by zombunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,24 +26,26 @@ static t_stack	*ft_sort_three(t_stack *list)
 	//printf("a3 = %d\n", a3->nbr);
 	while (!ft_issorted(NULL, list))
 	{
-		if ((a1->nbr < a2->nbr) && ( a2->nbr > a3->nbr) && (a1->nbr < a3->nbr))
+		if ((a1->nbr < a2->nbr) && (a2->nbr > a3->nbr) && (a1->nbr < a3->nbr))
 			write(1, "!rra\n", 5);//	rra(list);
 		else if ((a1->nbr > a2->nbr) && (a2->nbr < a3->nbr) && (a1->nbr > a3->nbr))
-			ra(&list);
+			list = ra(&list);
 		else if ((a1->nbr > a2->nbr) && (a2->nbr > a3->nbr) && (a1->nbr > a3->nbr))
 			write(1, "!sa\n", 4); //	sa(list);
 		else if ((a1->nbr > a2->nbr) && (a2->nbr < a3->nbr) && (a1->nbr < a3->nbr))
 			write(1, "!rra\n", 5);//	rra(list);	
 	//	printf("\033[32mWhile, Louco\n\033[0m");
 	}
+	return (list);
+	//ft_free(NULL, list);
 	//printf("\033[35mlist->nbr = %d\033[0m\n", list->nbr);
 	//printf("\033[34mlist->next->nbr = %d\033[0m\n", list->next->nbr);
 	//printf("\033[36mlist->next->next->nbr = %d\033[0m\n", list->next->next->nbr);
 }
 
-void	ft_sort(t_stack *a, t_stack *b, int ac)
+t_stack	*ft_sort(t_stack *a, t_stack *b, int ac)
 {
 	if (ac == 3)
-		ft_sort_three(a);
-	return ;
+		a = ft_sort_three(a);
+	return (a);
 }

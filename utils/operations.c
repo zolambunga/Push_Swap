@@ -6,31 +6,31 @@
 /*   By: zombunga <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 00:20:07 by zombunga          #+#    #+#             */
-/*   Updated: 2024/10/10 12:17:11 by zombunga         ###   ########.fr       */
+/*   Updated: 2024/10/11 14:19:20 by zombunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-void	ra(t_stack **list)
+t_stack	*ra(t_stack **top)
 {
-	t_stack *last;
+	t_stack *bottom;
 //	t_stack	*tmp;
 
 	//printf("Antes, mas já entrei\n");
-	last = ft_lst_findlast(*list);
-	//printf("O primeiro é: %d\n", (*list)->nbr);
-	//printf("O do meio agora é: %d\n", (*list)->next->nbr);
-	//printf("O último é: %d\n", last->nbr);
-	(*list)->prev = last;
-	//printf("O do meio agora é: %d\n", (*list)->prev->nbr);
-	last->next = (*list);
-	(*list) = (*list)->next;
-	(*list)->prev = NULL;
-	//printf("last->next->nbr = %d", last->next->nbr);
-	last->next->next = NULL;
+	bottom = ft_lst_findlast(*top);
+	//printf("O primeiro é: %d\n", (*top)->nbr);
+	//printf("O do meio agora é: %d\n", (*top)->next->nbr);
+	//printf("O último é: %d\n", bottom->nbr);
+	(*top)->prev = bottom;
+	//printf("O do meio agora é: %d\n", (*top)->prev->nbr);
+	bottom->next = (*top);
+	(*top) = (*top)->next;
+	(*top)->prev = NULL;
+	//printf("bottom->next->nbr = %d", last->next->nbr);
+	bottom->next->next = NULL;
 
-	//tmp = *list;
+	//tmp = *top;
 	//int	i = 0;
 	/*while (tmp && i > 4)
 	{
@@ -39,4 +39,6 @@ void	ra(t_stack **list)
 		i++;
 	}*/
 	write(1, "ra\n", 3);
+//	ft_free(NULL, bottom);
+	return (*top);
 }

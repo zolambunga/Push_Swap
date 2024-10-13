@@ -15,30 +15,40 @@
 t_stack	*ra(t_stack **top)
 {
 	t_stack *bottom;
-//	t_stack	*tmp;
 
-	//printf("Antes, mas já entrei\n");
 	bottom = ft_lst_findlast(*top);
-	//printf("O primeiro é: %d\n", (*top)->nbr);
-	//printf("O do meio agora é: %d\n", (*top)->next->nbr);
-	//printf("O último é: %d\n", bottom->nbr);
 	(*top)->prev = bottom;
-	//printf("O do meio agora é: %d\n", (*top)->prev->nbr);
 	bottom->next = (*top);
 	(*top) = (*top)->next;
 	(*top)->prev = NULL;
-	//printf("bottom->next->nbr = %d", last->next->nbr);
 	bottom->next->next = NULL;
-
-	//tmp = *top;
-	//int	i = 0;
-	/*while (tmp && i > 4)
-	{
-		printf("\nHi %d\n", tmp->nbr);
-		tmp = tmp->prev;
-		i++;
-	}*/
 	write(1, "ra\n", 3);
-//	ft_free(NULL, bottom);
+	return (*top);
+}
+
+t_stack	*rra(t_stack **top)
+{
+	t_stack	*bottom;
+
+	bottom = ft_lst_findlast(*top);
+	bottom->next = (*top);
+	(*top)->prev = bottom;
+	(*top) = bottom;
+	bottom->prev->next = NULL;
+	write(1, "rra\n", 4);
+	return (*top);
+}
+
+t_stack	*sa(t_stack **top)
+{
+	t_stack	*second;
+
+	second = (*top)->next;
+	(*top)->prev = second;
+	(*top)->next = second->next;
+	second->prev = NULL;
+	second->next = (*top);
+	(*top) = second;
+	write(1, "sa\n", 3);
 	return (*top);
 }

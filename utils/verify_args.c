@@ -60,8 +60,8 @@ int	ft_issorted(char **av, t_stack *list)
 	//printf("%d\n", list->nbr);
 	while (tmp != NULL && tmp->next)
 	{
-		//printf("%d\n", tmp->nbr);
-		//printf("ft_issorted\n");
+	//	printf("%d\n", tmp->nbr);
+	//	printf("ft_issorted\n");
 		if (tmp->nbr > tmp->next->nbr)
 			return (0);
 		tmp = tmp->next;

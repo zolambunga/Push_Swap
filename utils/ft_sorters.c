@@ -18,29 +18,40 @@ static t_stack	*ft_sort_three(t_stack *list)
 	t_stack	*a2;
 	t_stack	*a3;
 
+	int i = 0;
 	a1 = list;
 	a2 = list->next;
 	a3 = list->next->next;
 	//printf("a1 = %d\n", a1->nbr);
 	//printf("a2 = %d\n", a2->nbr);
 	//printf("a3 = %d\n", a3->nbr);
-	while (!ft_issorted(NULL, list))
+	while (!ft_issorted(NULL, list) /*&& (i < 2)*/)
 	{
+		a1 = list;
+		a2 = list->next;
+		a3 = list->next->next;
 		if ((a1->nbr < a2->nbr) && (a2->nbr > a3->nbr) && (a1->nbr < a3->nbr))
-			write(1, "!rra\n", 5);//	rra(list);
+			/*write(1, "!rra\n", 5);*/ list = rra(&list);
+		else if ((a1->nbr < a2->nbr) && (a2->nbr > a3->nbr) && (a1->nbr > a3->nbr))
+			list = rra(&list);
 		else if ((a1->nbr > a2->nbr) && (a2->nbr < a3->nbr) && (a1->nbr > a3->nbr))
 			list = ra(&list);
 		else if ((a1->nbr > a2->nbr) && (a2->nbr > a3->nbr) && (a1->nbr > a3->nbr))
-			write(1, "!sa\n", 4); //	sa(list);
+			//write(1, "!ra\n", 4);<F11>
+			list = ra(&list);
 		else if ((a1->nbr > a2->nbr) && (a2->nbr < a3->nbr) && (a1->nbr < a3->nbr))
-			write(1, "!rra\n", 5);//	rra(list);	
+			/*write(1, "!rra\n", 5);*/
+			list = sa(&list);	
 	//	printf("\033[32mWhile, Louco\n\033[0m");
+	//printf("i é %d\n", i);
+	i++;
 	}
-	return (list);
 	//ft_free(NULL, list);
-	//printf("\033[35mlist->nbr = %d\033[0m\n", list->nbr);
-	//printf("\033[34mlist->next->nbr = %d\033[0m\n", list->next->nbr);
-	//printf("\033[36mlist->next->next->nbr = %d\033[0m\n", list->next->next->nbr);
+	printf("\033[35mlist->nbr = %d\033[0m\n", list->nbr);
+	printf("\033[34mlist->next->nbr = %d\033[0m\n", list->next->nbr);
+	printf("\033[36mlist->next->next->nbr = %d\033[0m\n", list->next->next->nbr);
+	printf("\033[37mlist->next->next->next = %p\033[0m\n", list->next->next->next);
+	return (list);
 }
 
 t_stack	*ft_sort(t_stack *a, t_stack *b, int ac)

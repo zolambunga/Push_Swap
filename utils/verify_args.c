@@ -24,7 +24,7 @@ int	ft_thereis_duplicate(char **av)
 		j = i + 1;
 		while (av[j])
 		{
-			if (ft_atoi_sign(av[i]) == ft_atoi_sign(av[j]))
+			if (ft_atoi(av[i]) == ft_atoi(av[j]))
 			{
 				ft_free(av, NULL);
 				ft_error();
@@ -51,7 +51,7 @@ int	ft_issorted(char **av, t_stack *list)
 		iter.j = iter.i + 1;
 		while (av[iter.j])
 		{
-			if (ft_atoi_sign(av[iter.i]) > ft_atoi_sign(av[iter.j]))
+			if (ft_atoi(av[iter.i]) > ft_atoi(av[iter.j]))
 				return (0);
 			iter.j++;
 		}
@@ -87,7 +87,7 @@ static int	ft_isin_accepted_nbrrange(char **av)
 	i = 0;
 	while (av[i])
 	{
-		if (ft_atoll_sign(av[i]) > INT_MAX || ft_atoll_sign(av[i]) < INT_MIN)
+		if (ft_atoll_pushswap(av[i]) > INT_MAX || ft_atoll_pushswap(av[i]) < INT_MIN)
 			return (0);
 		i++;
 	}
@@ -109,7 +109,7 @@ static int	ft_isvalid(char **av)
 		{
 			if ((!ft_isdigit(av[i][j]) && !ft_issign(av[i][j]))
 			|| (!ft_isdigit(av[i][j]) && !ft_isdigit(av[i][j + 1]))
-			|| (ft_isdigit(av[i][j]) == 1 && ft_issign(av[i][j + 1])))
+			|| (ft_isdigit(av[i][j]) && ft_issign(av[i][j + 1])))
 				return (0);
 			if (ft_isdigit(av[i][j]))
 				triger++;

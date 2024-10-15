@@ -41,6 +41,9 @@ long long int	ft_atoll(const char *str)
 int main()
 {
 	char i[] = "21474836489";
+	//char j[] = "90000000000000000000000000000000000000000000000000000000000000009";
+	char j[] = "9223372036854775809";
 	printf("Number %lld\n", ft_atoll(i)*10);
+	printf("Number j %lld\n", ft_atoll(j));
 	return (0);
 }*/

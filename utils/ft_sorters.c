@@ -12,6 +12,12 @@
 
 #include "../includes/push_swap.h"
 
+static t_stack	*ft_sort_two(t_stack *list)
+{
+	list = sa(&list);
+	return (list);
+}
+
 static t_stack	*ft_sort_three(t_stack *list)
 {
 	t_stack	*a1;
@@ -31,32 +37,29 @@ static t_stack	*ft_sort_three(t_stack *list)
 		a2 = list->next;
 		a3 = list->next->next;
 		if ((a1->nbr < a2->nbr) && (a2->nbr > a3->nbr) && (a1->nbr < a3->nbr))
-			/*write(1, "!rra\n", 5);*/ list = rra(&list);
+			list = rra(&list);
 		else if ((a1->nbr < a2->nbr) && (a2->nbr > a3->nbr) && (a1->nbr > a3->nbr))
 			list = rra(&list);
 		else if ((a1->nbr > a2->nbr) && (a2->nbr < a3->nbr) && (a1->nbr > a3->nbr))
 			list = ra(&list);
 		else if ((a1->nbr > a2->nbr) && (a2->nbr > a3->nbr) && (a1->nbr > a3->nbr))
-			//write(1, "!ra\n", 4);<F11>
 			list = ra(&list);
 		else if ((a1->nbr > a2->nbr) && (a2->nbr < a3->nbr) && (a1->nbr < a3->nbr))
-			/*write(1, "!rra\n", 5);*/
-			list = sa(&list);	
-	//	printf("\033[32mWhile, Louco\n\033[0m");
-	//printf("i é %d\n", i);
-	i++;
+			list = sa(&list);
+		i++;
 	}
-	//ft_free(NULL, list);
-	printf("\033[35mlist->nbr = %d\033[0m\n", list->nbr);
+	/*printf("\033[35mlist->nbr = %d\033[0m\n", list->nbr);
 	printf("\033[34mlist->next->nbr = %d\033[0m\n", list->next->nbr);
 	printf("\033[36mlist->next->next->nbr = %d\033[0m\n", list->next->next->nbr);
-	printf("\033[37mlist->next->next->next = %p\033[0m\n", list->next->next->next);
+	printf("\033[37mlist->next->next->next = %p\033[0m\n", list->next->next->next);*/
 	return (list);
 }
 
 t_stack	*ft_sort(t_stack *a, t_stack *b, int ac)
 {
-	if (ac == 3)
+	if (ac == 2)
+		a = ft_sort_two(a);
+	else if (ac == 3)
 		a = ft_sort_three(a);
 	return (a);
 }

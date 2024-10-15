@@ -34,6 +34,7 @@ void		ft_free(char **av, t_stack *list);
 t_stack		*ra(t_stack **top);
 t_stack		*rra(t_stack **top);
 t_stack		*sa(t_stack **top);
+long long int	ft_atoll_pushswap(const char *str);
 
 int			ft_issorted(char **av, t_stack *list);
 int			ft_thereis_duplicate(char **av);

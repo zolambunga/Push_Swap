@@ -19,7 +19,6 @@ t_stack	*ft_lst_findlast(t_stack *list)
 	tmp = list;
 	while (tmp->next)
 		tmp = tmp->next;
-	//ft_free(NULL, list);
 	return (tmp);
 }
 

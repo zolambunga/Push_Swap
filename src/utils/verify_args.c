@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/push_swap.h"
+#include "../../includes/push_swap.h"
 
 int	ft_thereis_duplicate(char **av)
 {
@@ -44,8 +44,6 @@ int	ft_issorted(char **av, t_stack *list)
 	iter.i = 0;
 	iter.j = 0;
 	tmp = list;
-	//printf("TOP_sort\n");
-	//printf("%d\n", tmp->nbr);
 	while (av != NULL && av[iter.i])
 	{
 		iter.j = iter.i + 1;
@@ -57,26 +55,12 @@ int	ft_issorted(char **av, t_stack *list)
 		}
 		iter.i++;
 	}
-	//printf("%d\n", list->nbr);
 	while (tmp != NULL && tmp->next)
 	{
-	//	printf("%d\n", tmp->nbr);
-	//	printf("ft_issorted\n");
 		if (tmp->nbr > tmp->next->nbr)
 			return (0);
 		tmp = tmp->next;
 	}
-	/*printf("ft_issorted: bem antes do ft_free dele av1 é |%s|\n", *av);
-	printf("ft_issorted: bem antes do ft_free dele av2 é |%s|\n", *(av+1));
-	printf("ft_issorted: bem antes do ft_free dele av3 é |%s|\n", *(av+2));*/
-	
-	//ft_free(&av, list);
-	
-	//printf("ft_issorted: bem depois do ft_free ");
-	/*printf("ft_issorted: bem depois do ft_free dele av1 é |%s|\n", *av);
-	printf("ft_issorted: bem depois do ft_free dele av2 é |%s|\n", *(av+1));
-	printf("ft_issorted: bem depois do ft_free dele av3 é |%s|\n", *(av+2));*/
-	//write(1, "DEPOISdeFREE\n", 13);
 	return (1);
 }
 

@@ -31,11 +31,17 @@ t_stack		*ft_sort(t_stack *a, t_stack *b, int ac);
 void		ft_error(void);
 void		ft_verify_args(int ac, char **av);
 void		ft_free(char **av, t_stack *list);
+
 t_stack		*ra(t_stack **top);
+t_stack		*rb(t_stack **top);
 t_stack		*rra(t_stack **top);
 t_stack		*sa(t_stack **top);
+t_stack		*pa(t_stack **a, t_stack **b);
+t_stack		*pb(t_stack **a, t_stack **b);
+
 long long int	ft_atoll_pushswap(const char *str);
 
+int			ft_lst_size(t_stack *lst);
 int			ft_issorted(char **av, t_stack *list);
 int			ft_thereis_duplicate(char **av);
 

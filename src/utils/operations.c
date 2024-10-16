@@ -10,9 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/push_swap.h"
+#include "../../includes/push_swap.h"
 
-t_stack	*ra(t_stack **top)
+static void	rotate(t_stack **top)
 {
 	t_stack *bottom;
 
@@ -22,10 +22,24 @@ t_stack	*ra(t_stack **top)
 	(*top) = (*top)->next;
 	(*top)->prev = NULL;
 	bottom->next->next = NULL;
+}
+
+t_stack	*ra(t_stack **top)
+{
+	rotate(top);
 	write(1, "ra\n", 3);
 	return (*top);
 }
 
+t_stack	*rb(t_stack **top)
+{
+	rotate(top);
+	write(1, "rb\n", 3);
+	return (*top);
+}
+
+
+//t_stack	*rr(t_stack **top)
 t_stack	*rra(t_stack **top)
 {
 	t_stack	*bottom;
@@ -52,3 +66,43 @@ t_stack	*sa(t_stack **top)
 	write(1, "sa\n", 3);
 	return (*top);
 }
+
+//////////////////////////////////
+
+static void	push(t_stack **dst, t_stack **src)
+{
+	t_stack	*node;
+
+	if (!*src)
+		return ;
+	node = (*src);
+	(*src) = (*src)->next;
+	if (*src)
+		(*src)->prev = NULL;
+	node->prev = NULL;
+	if (!*dst)
+	{
+		*dst = node;
+		node->next = NULL;
+	}
+	else
+	{
+		node->next = *dst;
+		node->next->prev = node;
+		*dst = node;
+	}
+}
+
+t_stack	*pa(t_stack **a, t_stack **b)
+{
+	push(a, b);
+	write(1, "pa\n", 3);
+}
+
+t_stack	*pb(t_stack **a, t_stack **b)
+{
+	push(b, a); 
+	write(1, "pb\n", 3);
+}
+
+

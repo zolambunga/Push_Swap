@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/push_swap.h"
+#include "../../includes/push_swap.h"
 
 t_stack	*ft_lst_findlast(t_stack *list)
 {
@@ -20,6 +20,19 @@ t_stack	*ft_lst_findlast(t_stack *list)
 	while (tmp->next)
 		tmp = tmp->next;
 	return (tmp);
+}
+
+int	ft_lst_size(t_stack *lst)
+{
+	int	i;
+
+	i = 0;
+	while (lst)
+	{
+		lst = lst->next;
+		i++;
+	}
+	return (i);
 }
 
 long long int	ft_atoll_pushswap(const char *str)

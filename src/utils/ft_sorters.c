@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/push_swap.h"
+#include "../../includes/push_swap.h"
 
 static t_stack	*ft_sort_two(t_stack *list)
 {
@@ -25,12 +25,6 @@ static t_stack	*ft_sort_three(t_stack *list)
 	t_stack	*a3;
 
 	int i = 0;
-	a1 = list;
-	a2 = list->next;
-	a3 = list->next->next;
-	//printf("a1 = %d\n", a1->nbr);
-	//printf("a2 = %d\n", a2->nbr);
-	//printf("a3 = %d\n", a3->nbr);
 	while (!ft_issorted(NULL, list) /*&& (i < 2)*/)
 	{
 		a1 = list;
@@ -48,11 +42,53 @@ static t_stack	*ft_sort_three(t_stack *list)
 			list = sa(&list);
 		i++;
 	}
-	/*printf("\033[35mlist->nbr = %d\033[0m\n", list->nbr);
+	printf("\033[35mlist->nbr = %d\033[0m\n", list->nbr);
 	printf("\033[34mlist->next->nbr = %d\033[0m\n", list->next->nbr);
 	printf("\033[36mlist->next->next->nbr = %d\033[0m\n", list->next->next->nbr);
-	printf("\033[37mlist->next->next->next = %p\033[0m\n", list->next->next->next);*/
+	printf("\033[37mlist->next->next->next = %p\033[0m\n", list->next->next->next);
 	return (list);
+}
+
+static t_stack	*ft_sort_big(t_stack *a, t_stack *b, int i)
+{
+	t_stack *tmp;
+
+	if (i-- > 3 && !ft_issorted(NULL, a))
+		pb(&a, &b);
+	if (i-- > 3 && !ft_issorted(NULL, a))
+		pb(&a, &b);
+		
+	/*while (i > 3 && !ft_issorted(NULL, a))
+	{
+		pb(&a, &b);
+		i--;
+	}*/
+	/*if (ft_lst_size(a) == 3)
+	{
+		printf ("\033[1;39mSORTEADO EM BIG\033[0m\n");
+		a = ft_sort_three(a);
+	}*/
+	/*if (ft_lst_size(b) == 3)
+	{
+		printf ("\033[1;39mSORTEADO EM BIG b\033[0m\n");
+		b = ft_sort_three(b);
+	}*/
+	tmp = b;
+	printf ("=========\n\033[35mpilha b\033[0m\n");
+	while (tmp)
+	{
+		printf("%d\n", tmp->nbr);
+		tmp = tmp->next;
+	}
+	ft_free(NULL, b);
+	printf("=========\n\033[36mpilha a\033[0m\n");
+	tmp = a;
+	while (tmp)
+	{
+		printf("%d\n", tmp->nbr);
+		tmp = tmp->next;
+	}
+	return (a);
 }
 
 t_stack	*ft_sort(t_stack *a, t_stack *b, int ac)
@@ -61,5 +97,7 @@ t_stack	*ft_sort(t_stack *a, t_stack *b, int ac)
 		a = ft_sort_two(a);
 	else if (ac == 3)
 		a = ft_sort_three(a);
+	else if (ac > 3)
+		a = ft_sort_big(a, b, ac);
 	return (a);
 }

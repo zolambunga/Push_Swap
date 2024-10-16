@@ -61,21 +61,15 @@ int	main(int ac, char **av)
 	t_stack	*b;
 
 	a = NULL;
+	b = NULL;
 	av = ft_splitmat(av + 1, ' ');
 	i = ft_matlen(av);
 	ft_verify_args(i, av);
 	if (!ft_thereis_duplicate(av) && !ft_issorted(av, NULL))
 	{
 		a = recieve_args(i, av);
-	//	printf("\nAntes de sort\n");
 		a = ft_sort(a, b, i);
 	}
-//	printf("main: bem antes do ft_free dele av1 é |%s|\n", *av);
-//	printf("main: bem antes do ft_free dele av2 é |%s|\n", *(av+1));
-//	printf("main: bem antes do ft_free dele av3 é |%s|\n", *(av+2));
 	ft_free(av, a);
-//	printf("LIBERADO\n");
-//	printf("main: bem depois do ft_free dele av2 é |%s|\n", *(av+1));
-//	printf("main: bem depois do ft_free dele av3 é |%s|\n", *(av+2));
 	return (0);
 }

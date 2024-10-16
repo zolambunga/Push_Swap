@@ -71,7 +71,8 @@ static int	ft_isin_accepted_nbrrange(char **av)
 	i = 0;
 	while (av[i])
 	{
-		if (ft_atoll_pushswap(av[i]) > INT_MAX || ft_atoll_pushswap(av[i]) < INT_MIN)
+		if (ft_atoll_pushswap(av[i]) > INT_MAX
+			|| ft_atoll_pushswap(av[i]) < INT_MIN)
 			return (0);
 		i++;
 	}
@@ -91,8 +92,9 @@ static int	ft_isvalid(char **av)
 		j = 0;
 		while (av[i][j])
 		{
-			if ((!ft_isdigit(av[i][j]) && !ft_issign(av[i][j]))
-			|| (!ft_isdigit(av[i][j]) && !ft_isdigit(av[i][j + 1]))
+			//printf("av[i][j] = |%c|\nav[i][j+1] = |%c|\n", av[i][j], av[i][j+1]);
+			if ((!ft_isdigit(av[i][j]) && !ft_issign_space(av[i][j]))
+			|| (!ft_isdigit(av[i][j]) && !ft_isdigit_space(av[i][j + 1]))
 			|| (ft_isdigit(av[i][j]) && ft_issign(av[i][j + 1])))
 				return (0);
 			if (ft_isdigit(av[i][j]))
@@ -100,13 +102,16 @@ static int	ft_isvalid(char **av)
 			j++;
 		}
 		if (triger == 0)
+		{
+			printf("triger é %d\n", triger);
 			return (0);
+		}
 		i++;
 	}
 	return (1);
 }
 
-void	ft_verify_args(int ac, char **av)
+void	ft_verify_args(int ac, char **av, bool freeable)
 {
 	int	i;
 	int	j;
@@ -115,17 +120,21 @@ void	ft_verify_args(int ac, char **av)
 	j = 0;
 	if (!ft_isvalid(av))
 	{
-		ft_free(av, NULL);
+		//printf("invalid\n");
+		if (freeable)
+			ft_free(av, NULL);
 		ft_error();
 	}
 	if (!ft_isin_accepted_nbrrange(av))
 	{
-		ft_free(av, NULL);
+		if (freeable)
+			ft_free(av, NULL);
 		ft_error();
 	}
 	if (ac == 0 || ac == 1)
 	{
-		ft_free(av, NULL);
+		if (freeable)
+			ft_free(av, NULL);
 		exit(0);
 	}
 }

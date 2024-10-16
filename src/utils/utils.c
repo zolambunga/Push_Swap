@@ -12,6 +12,16 @@
 
 #include "../../includes/push_swap.h"
 
+int	ft_issign_space(char sign)
+{
+	return (sign == '+' || sign == '-' || sign == ' ');
+}
+
+int	ft_isdigit_space(int c)
+{
+	return ((c >= '0' && c <= '9') || c == ' ' || c == '\0');
+}
+
 t_stack	*ft_lst_findlast(t_stack *list)
 {
 	t_stack	*tmp;

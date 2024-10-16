@@ -14,6 +14,6 @@
 
 void	ft_error(void)
 {
-	write(2, "\033[31;1mError\n\033[0m", 18);
+	write(2, "\033[31mError\n\033[0m", 16);
 	exit(1);
 }

@@ -14,6 +14,7 @@
 # define PUSH_SWAP_H
 
 # include <limits.h>
+# include <stdbool.h>
 # include "../libft/libft.h"
 
 typedef struct s_stack{
@@ -27,15 +28,24 @@ typedef struct s_struct{
 	int	j;
 }	t_struct;
 
-t_stack		*ft_sort(t_stack *a, t_stack *b, int ac);
-void		ft_error(void);
-void		ft_verify_args(int ac, char **av);
-void		ft_free(char **av, t_stack *list);
 
-t_stack		*ra(t_stack **top);
-t_stack		*rb(t_stack **top);
-t_stack		*rra(t_stack **top);
-t_stack		*sa(t_stack **top);
+void		ft_error(void);
+void		ft_verify_args(int ac, char **av, bool freeable);
+void		ft_free(char **av, t_stack *list);
+t_stack		*ft_sort(t_stack *a, t_stack *b, int ac);
+
+t_stack		*ra(t_stack **top, bool print);
+t_stack		*rb(t_stack **top, bool print);
+void		rr(t_stack **topa, t_stack **topb);
+
+t_stack		*rra(t_stack **top, bool print);
+t_stack		*rrb(t_stack **top, bool print);
+void		rrr(t_stack **topa, t_stack **topb);
+
+t_stack		*sa(t_stack **top, bool print);
+t_stack		*sb(t_stack **top, bool print);
+void		ss(t_stack **topa, t_stack **topb);
+
 t_stack		*pa(t_stack **a, t_stack **b);
 t_stack		*pb(t_stack **a, t_stack **b);
 
@@ -44,7 +54,8 @@ long long int	ft_atoll_pushswap(const char *str);
 int			ft_lst_size(t_stack *lst);
 int			ft_issorted(char **av, t_stack *list);
 int			ft_thereis_duplicate(char **av);
-
+int			ft_issign_space(char sign);
+int			ft_isdigit_space(int c);
 
 t_stack		*ft_lst_findlast(t_stack *list);
 

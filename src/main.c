@@ -62,9 +62,15 @@ int	main(int ac, char **av)
 
 	a = NULL;
 	b = NULL;
+	ft_verify_args((ac + 1), (av+1), false);
 	av = ft_splitmat(av + 1, ' ');
 	i = ft_matlen(av);
-	ft_verify_args(i, av);
+	/*if ((ac - 1) < i)
+	{
+		ft_free(av, NULL);
+		ft_error();
+	}*/
+	ft_verify_args(i, av, true);
 	if (!ft_thereis_duplicate(av) && !ft_issorted(av, NULL))
 	{
 		a = recieve_args(i, av);

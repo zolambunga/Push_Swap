@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zombunga <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: zombunga <zombunga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 16:58:02 by zombunga          #+#    #+#             */
-/*   Updated: 2024/10/16 16:58:34 by zombunga         ###   ########.fr       */
+/*   Updated: 2024/10/18 11:27:03 by zombunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,13 +36,13 @@ static void	push(t_stack **dst, t_stack **src)
 	}
 }
 
-t_stack	*pa(t_stack **a, t_stack **b)
+t_stack	*ft_pa(t_stack **a, t_stack **b)
 {
 	push(a, b);
 	write(1, "pa\n", 3);
 }
 
-t_stack	*pb(t_stack **a, t_stack **b)
+t_stack	*ft_pb(t_stack **a, t_stack **b)
 {
 	push(b, a);
 	write(1, "pb\n", 3);

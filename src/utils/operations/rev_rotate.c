@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rev_rotate.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zombunga <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: zombunga <zombunga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 16:48:01 by zombunga          #+#    #+#             */
-/*   Updated: 2024/10/16 16:56:35 by zombunga         ###   ########.fr       */
+/*   Updated: 2024/10/18 11:28:25 by zombunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static void	rev_rotate(t_stack **top)
 	bottom->prev->next = NULL;
 }
 
-t_stack	*rra(t_stack **top, bool print)
+t_stack	*ft_rra(t_stack **top, bool print)
 {
 	rev_rotate(top);
 	if (print)
@@ -31,7 +31,7 @@ t_stack	*rra(t_stack **top, bool print)
 	return (*top);
 }
 
-t_stack	*rrb(t_stack **top, bool print)
+t_stack	*ft_rrb(t_stack **top, bool print)
 {
 	rev_rotate(top);
 	if (print)
@@ -39,9 +39,9 @@ t_stack	*rrb(t_stack **top, bool print)
 	return (*top);
 }
 
-void	rrr(t_stack **topa, t_stack **topb)
+void	ft_rrr(t_stack **topa, t_stack **topb)
 {
-	(*topa) = rra(topa, false);
-	(*topb) = rrb(topb, false);
+	(*topa) = ft_rra(topa, false);
+	(*topb) = ft_rrb(topb, false);
 	write(1, "rrr\n", 4);
 }

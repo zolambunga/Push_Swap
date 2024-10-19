@@ -6,7 +6,7 @@
 /*   By: zombunga <zombunga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 23:09:08 by zombunga          #+#    #+#             */
-/*   Updated: 2024/10/18 11:43:16 by zombunga         ###   ########.fr       */
+/*   Updated: 2024/10/19 16:55:43 by zombunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,11 +42,11 @@ static t_stack	*ft_sort_three(t_stack *list)
 		else if ((a1->nbr > a2->nbr) && (a2->nbr < a3->nbr)
 			&& (a1->nbr < a3->nbr))
 			list = ft_sa(&list, true);
-	}
-	/*printf("\033[35mlist->nbr = %d\033[0m\n", list->nbr);
+	printf("\033[35mlist->nbr = %d\033[0m\n", list->nbr);
 	printf("\033[34mlist->next->nbr = %d\033[0m\n", list->next->nbr);
 	printf("\033[36mlist->next->next->nbr = %d\033[0m\n", list->next->next->nbr);
-	printf("\033[37mlist->next->next->next = %p\033[0m\n", list->next->next->next);*/
+	printf("\033[37mlist->next->next->next = %p\033[0m\n", list->next->next->next);
+	}
 	return (list);
 }
 ////////////////////////PARA TESTE/////////||||||||||||||||||\\\\\\\\\\\//
@@ -63,7 +63,7 @@ static void	printlist(t_stack *a, t_stack *b)
 	}
 	printf ("\033[35m===============\033[0m\n");
 	tmp = a;
-	printf ("\033[36m====pilha b====\033[0m\n");
+	printf ("\033[36m====pilha a====\033[0m\n");
 	while (tmp)
 	{
 		printf("%d\n", tmp->nbr);
@@ -78,24 +78,27 @@ static t_stack	*ft_sort_big(t_stack *a, t_stack *b)
 	int			i;
 
 	i = ft_lst_size(a);
+	printf("valor de i = %d\n", i);
 	printlist(a, b);
 	if (i-- > 3 && !ft_issorted(NULL, a))
 		ft_pb(&a, &b);
+	printf("valor de i = %d\n", i);
 	printlist(a, b);
 	if (i-- > 3 && !ft_issorted(NULL, a))
 		ft_pb(&a, &b);
+	printf("valor de i = %d\n", i);
 	printlist(a, b);
 	while (i-- > 3 && !ft_issorted(NULL, a))
 	{
-		ft_pb(&a, &b);
+		ft_update_index(a);
+		ft_update_index(b);
+		ft_settarget_a(a, b);
+		ft_atob(&a, &b);
+		printf("valor de i = %d\n", i);
 	}
-	a = ft_sort_three(a);
+	if (ft_lst_size(a) == 3)
+		a = ft_sort_three(a);
 	printlist(a, b);
-	//if (ft_lst_size(b) == 3)
-	//{
-	//	printf ("\033[1;39mSORTEADO EM BIG b\033[0m\n");
-	//	b = ft_sort_three(b);
-	//}
 	return (a);
 }
 

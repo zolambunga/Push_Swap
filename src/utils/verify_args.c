@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   verify_args.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zombunga <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: zombunga <zombunga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 20:11:23 by zombunga          #+#    #+#             */
-/*   Updated: 2024/10/09 08:21:16 by zombunga         ###   ########.fr       */
+/*   Updated: 2024/10/19 16:41:54 by zombunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,14 +36,14 @@ int	ft_thereis_duplicate(char **av)
 	return (0);
 }
 
-int	ft_issorted(char **av, t_stack *list)
+int	ft_issorted(char **av, t_stack *stack)
 {
 	t_stack		*tmp;
 	t_struct	iter;
 
 	iter.i = 0;
 	iter.j = 0;
-	tmp = list;
+	tmp = stack;
 	while (av != NULL && av[iter.i])
 	{
 		iter.j = iter.i + 1;

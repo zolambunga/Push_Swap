@@ -6,7 +6,7 @@
 /*   By: zombunga <zombunga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 20:11:56 by zombunga          #+#    #+#             */
-/*   Updated: 2024/10/18 14:25:12 by zombunga         ###   ########.fr       */
+/*   Updated: 2024/10/19 17:18:49 by zombunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,10 @@
 
 typedef struct s_stack{
 	int				nbr;
+	int				index;
+	int				push_cost;
+	bool			midpoint_up;
+	struct s_stack	*target;
 	struct s_stack	*prev;
 	struct s_stack	*next;
 }	t_stack;
@@ -35,6 +39,11 @@ void		ft_rrr(t_stack **topa, t_stack **topb);
 void		ft_rr(t_stack **topa, t_stack **topb);
 void		ft_ss(t_stack **topa, t_stack **topb);
 
+void		ft_update_index(t_stack *stack);
+void		ft_pushcost(t_stack *a, t_stack *b);
+void		ft_settarget_a(t_stack *a, t_stack *b);
+void		ft_atob(t_stack **a, t_stack **b);
+
 t_stack		*ft_sort(t_stack *a, t_stack *b, int ac);
 t_stack		*ft_ra(t_stack **top, bool print);
 t_stack		*ft_rb(t_stack **top, bool print);
@@ -44,13 +53,15 @@ t_stack		*ft_sa(t_stack **top, bool print);
 t_stack		*ft_sb(t_stack **top, bool print);
 t_stack		*ft_pa(t_stack **a, t_stack **b);
 t_stack		*ft_pb(t_stack **a, t_stack **b);
-t_stack		*ft_atob(t_stack **a, t_stack **b);
-t_stack		*ft_findmin(t_stack *list);
-t_stack		*ft_findmax(t_stack *list);
-t_stack		*ft_lst_findlast(t_stack *list);
+t_stack		*ft_findmin(t_stack *stack);
+t_stack		*ft_findmax(t_stack *stack);
+t_stack		*ft_findmin_cost(t_stack *stack);
+t_stack		*ft_lst_findlast(t_stack *stack);
 
+int			ft_abs(int num);
+int			ft_isontop(t_stack *node, t_stack *top);
 int			ft_lst_size(t_stack *lst);
-int			ft_issorted(char **av, t_stack *list);
+int			ft_issorted(char **av, t_stack *stack);
 int			ft_thereis_duplicate(char **av);
 int			ft_issign_space(char sign);
 int			ft_isdigit_space(int c);

@@ -17,21 +17,22 @@ void ft_atob(t_stack **a, t_stack **b)
     t_stack *cheap;
 
     cheap = ft_findmin_cost(*a);
-    if (!ft_isontop(cheap, (*a)))
-    {
-            if (cheap->midpoint_up)
-                ft_ra(a, true);
-            else
-                ft_rra(a, true);
-    }
-    if (!ft_isontop(cheap->target, (*b)))
-    {
-            if (cheap->target->midpoint_up)
-                ft_rb(b, true);
-            else
-                ft_rrb(b, true);
-    }
-    if (ft_isontop(cheap->target, (*b))
+	if (!ft_isontop(cheap, (*a)))
+	{
+		if (cheap->midpoint_up)
+			ft_ra(a, true);
+		else
+			ft_rra(a, true);
+	}
+	if (!ft_isontop(cheap->target, (*b)))
+	{
+		printf("\033[36mlist->next->next->nbr = %d\033[0m\n", list->next->next->nbr);
+		if (cheap->target->midpoint_up)
+			ft_rb(b, true);
+		else
+			ft_rrb(b, true);
+	}
+	if (ft_isontop(cheap->target, (*b))
         && ft_isontop(cheap, (*a)))
         ft_pb(a, b);
 }

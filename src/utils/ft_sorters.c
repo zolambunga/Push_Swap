@@ -88,13 +88,15 @@ static t_stack	*ft_sort_big(t_stack *a, t_stack *b)
 		ft_pb(&a, &b);
 	printf("valor de i = %d\n", i);
 	printlist(a, b);
+	printf("estou a ir ao while, onde\nwhile (i(%d)-- > 3 && !ft_issorted(NULL, a))\n", i);
 	while (i-- > 3 && !ft_issorted(NULL, a))
 	{
-		ft_update_index(a);
 		ft_update_index(b);
+		ft_update_index(a);
 		ft_settarget_a(a, b);
+		ft_pushcost(a, b);
 		ft_atob(&a, &b);
-		printf("valor de i = %d\n", i);
+		printf("valor de i aqui dentro = %d\n", i);
 	}
 	if (ft_lst_size(a) == 3)
 		a = ft_sort_three(a);

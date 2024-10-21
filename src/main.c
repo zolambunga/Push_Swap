@@ -20,6 +20,7 @@ t_stack	*create_node(int n)
 	if (!list)
 		exit(1);
 	list->nbr = n;
+	list->same = false;
 	list->next = NULL;
 	list->prev = NULL;
 	return (list);

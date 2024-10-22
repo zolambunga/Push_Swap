@@ -6,11 +6,35 @@
 /*   By: zombunga <zombunga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 23:09:08 by zombunga          #+#    #+#             */
-/*   Updated: 2024/10/21 09:45:29 by zombunga         ###   ########.fr       */
+/*   Updated: 2024/10/22 07:30:01 by zombunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/push_swap.h"
+
+////////////////////////PARA TESTE/////////||||||||||||||||||\\\\\\\\\\\//
+static void	printlist(t_stack *a, t_stack *b)
+{
+	t_stack		*tmp;
+
+	tmp = b;
+	printf ("\033[35m====pilha b====\033[0m\n");
+	while (tmp)
+	{
+		printf("%d\n", tmp->nbr);
+		tmp = tmp->next;
+	}
+	printf ("\033[35m===============\033[0m\n");
+	tmp = a;
+	printf ("\033[36m====pilha a====\033[0m\n");
+	while (tmp)
+	{
+		printf("[%d]%d->push_cost(%d)\n", tmp->index, tmp->nbr, tmp->push_cost);
+		tmp = tmp->next;
+	}
+	printf ("\033[36m===============\033[0m\n\033[32m---------------\033[0m\n");
+}
+/////////////////////////////////||||||||||||||||||\\\\\\\\\\\//
 
 static t_stack	*ft_sort_two(t_stack *list)
 {
@@ -49,29 +73,6 @@ static t_stack	*ft_sort_three(t_stack *list)
 	}
 	return (list);
 }
-////////////////////////PARA TESTE/////////||||||||||||||||||\\\\\\\\\\\//
-static void	printlist(t_stack *a, t_stack *b)
-{
-	t_stack		*tmp;
-
-	tmp = b;
-	printf ("\033[35m====pilha b====\033[0m\n");
-	while (tmp)
-	{
-		printf("%d\n", tmp->nbr);
-		tmp = tmp->next;
-	}
-	printf ("\033[35m===============\033[0m\n");
-	tmp = a;
-	printf ("\033[36m====pilha a====\033[0m\n");
-	while (tmp)
-	{
-		printf("%d\n", tmp->nbr);
-		tmp = tmp->next;
-	}
-	printf ("\033[36m===============\033[0m\n\033[32m---------------\033[0m\n");
-}
-/////////////////////////////////||||||||||||||||||\\\\\\\\\\\//
 
 static t_stack	*ft_sort_big(t_stack *a, t_stack *b)
 {	
@@ -98,8 +99,16 @@ static t_stack	*ft_sort_big(t_stack *a, t_stack *b)
 		ft_atob(&a, &b);
 		//printf("valor de i aqui dentro = %d\n", i);
 	}
-	if (ft_lst_size(a) == 3)
 		a = ft_sort_three(a);
+	while (*b)
+	{
+		ft_update_index(b);
+		ft_update_index(a);
+		ft_settarget_a(a, b);
+		ft_pushcost(a, b);
+		ft_btoa(&b, &a);
+		//printf("valor de i aqui dentro = %d\n", i);
+	}
 	printlist(a, b);
 	return (a);
 }

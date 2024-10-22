@@ -6,7 +6,7 @@
 /*   By: zombunga <zombunga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/18 11:52:47 by zombunga          #+#    #+#             */
-/*   Updated: 2024/10/21 18:11:32 by zombunga         ###   ########.fr       */
+/*   Updated: 2024/10/22 08:25:45 by zombunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static void	printlist(t_stack *a, t_stack *b)
 	printf ("\033[36m====pilha a====\033[0m\n");
 	while (tmp)
 	{
-		printf("%d\n", tmp->nbr);
+		printf("[%d]%d->push_cost(%d)\n", tmp->index, tmp->nbr, tmp->push_cost);
 		tmp = tmp->next;
 	}
 	printf ("\033[36m===============\033[0m\n\033[32m---------------\033[0m\n");
@@ -66,13 +66,12 @@ void	ft_update_index(t_stack *stack)
 	}
 }
 
-void    ft_settarget_a(t_stack *a, t_stack *b)
+void	ft_settarget_a(t_stack *a, t_stack *b)
 {
-	long int    targetnbr;
+	long int	targetnbr;
 	t_stack	*tmpb;
 	/*int	max;
 	int	min;
-	
 	max = (ft_findmax(b))->nbr;
 	min = (ft_findmin(b))->nbr;*/
 	while(a)
@@ -80,7 +79,7 @@ void    ft_settarget_a(t_stack *a, t_stack *b)
 		tmpb = b;
 		targetnbr = LONG_MAX;
 		while(tmpb)
-        	{
+		{
 			printf("\033[31ma->nbr(%d) e a->target(%p)\033[0m\n", a->nbr, a->target);
 			if (!a->target && (a->nbr > (ft_findmax(b))->nbr || a->nbr < (ft_findmin(b))->nbr))
 			{
@@ -110,15 +109,58 @@ void    ft_settarget_a(t_stack *a, t_stack *b)
 	}
 }
 
+void	ft_settarget_b(t_stack *b, t_stack *a)
+{
+	long int	targetnbr;
+	t_stack	*tmpa;
+	/*int	max;
+	int	min;
+	max = (ft_findmax(b))->nbr;
+	min = (ft_findmin(b))->nbr;*/
+	while(b)
+	{
+		tmpa = a;
+		targetnbr = LONG_MAX;
+		while(tmpa)
+		{
+			printf("\033[31mb->nbr(%d) e b->target(%p)\033[0m\n", b->nbr, b->target);
+			if (!b->target && (b->nbr > (ft_findmax(a))->nbr || b->nbr < (ft_findmin(a))->nbr))
+			{
+				b->target = ft_findmin(tmpa);
+				printf("AQUI EM if (a->nbr(%d) > (ft_findmax(tmpb))->nbr(%d) || a->nbr(%d) < (ft_findmin(tmpb))->nbr)(%d)\n", a->nbr, (ft_findmax(tmpb))->nbr, a->nbr, (ft_findmin(tmpb))->nbr);
+			}
+			else if (b->nbr < (ft_findmax(a))->nbr && b->nbr > (ft_findmin(a))->nbr)
+			{
+			printf("\033[3;35mENTRAMOS NA SEGUNDA CONDITION e targetnbr(%ld)\n\033[0m", targetnbr);
+				if ((b->nbr > tmpa->nbr) && (ft_abs(b->nbr - tmpa->nbr) < targetnbr))
+				{
+					printf("\033[35mif ( a->nbr(%d) > tmpb->nbr(%d) && ft_abs(a->nbr(%d) - tmpb->nbr(%d))(%d) < targetnbr(%ld))\n\033[0m", a->nbr, tmpb->nbr, a->nbr, tmpb->nbr, ft_abs(a->nbr - tmpb->nbr), targetnbr);
+					b->target = tmpa;
+					targetnbr = ft_abs(b->nbr - tmpa->nbr);
+					//printf("\033[35mft_abs(a->nbr(%d) - tmpb->nbr(%d))(%d)\n\033[0m", a->nbr, tmpb->nbr, ft_abs(a->nbr - tmpb->nbr));
+					//targetnbr = b->nbr;
+				}
+			}
+			printf("\033[35mVALOR DE A a->nbr(%d)\n\033[0m", tmpa->nbr);
+			if (a->target)
+				printf("\033[32mSAINDO DE SETTARGET\nonde b->nbr(%d) b->target->nbr(%d) targetnbr(%ld)\033[0m\n", b->nbr, b->target->nbr, targetnbr);
+			else
+				printf("\033[32mSAINDO DE SETTARGET\nonde b->nbr(%d) b->target->nbr(%p) targetnbr(%ld)\033[0m\n", b->nbr, b->target, targetnbr);
+			tmpa = tmpa->next;
+		}
+		b = b->next;
+	}
+}
+
 static int	ft_cost_calculus(t_stack *stack)
 {
 	int	cost;
 
-	cost = (stack->index - (ft_lst_size(stack)));
-	if(!(stack->midpoint_up))
-		return(cost);
+	cost = (stack->index - ft_lst_size(stack));
+	if (stack->midpoint_up)
+		return (stack->index);
 	else
-		return(stack->index);
+		return (cost);
 }
 
 void    ft_pushcost(t_stack *a, t_stack *b/*target*/)
@@ -136,9 +178,13 @@ void    ft_pushcost(t_stack *a, t_stack *b/*target*/)
 			//printf("\033[31mdepois do ft_cost_calculus(a);\n\033[0m");
 			to_bringb = ft_cost_calculus(a->target);
 			//printf("\033[31mdepois do ft_cost_calculus(a->target);\n\033[0m");
-			/*if (to_bringa == to_bringb)
-				a->same = true;*/
-			a->push_cost = to_bringa + to_bringb;
+			if (a->midpoint_up && a->target->midpoint_up)
+			{
+				a->same = true;
+				a->push_cost = to_bringa;
+			}
+			else
+				a->push_cost = to_bringa + to_bringb;
 			tmpb = tmpb->next;
 		}
 		a = a->next;

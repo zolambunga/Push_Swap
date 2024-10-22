@@ -6,7 +6,7 @@
 /*   By: zombunga <zombunga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/18 11:52:47 by zombunga          #+#    #+#             */
-/*   Updated: 2024/10/22 08:25:45 by zombunga         ###   ########.fr       */
+/*   Updated: 2024/10/22 17:25:46 by zombunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,10 +113,7 @@ void	ft_settarget_b(t_stack *b, t_stack *a)
 {
 	long int	targetnbr;
 	t_stack	*tmpa;
-	/*int	max;
-	int	min;
-	max = (ft_findmax(b))->nbr;
-	min = (ft_findmin(b))->nbr;*/
+
 	while(b)
 	{
 		tmpa = a;
@@ -127,14 +124,14 @@ void	ft_settarget_b(t_stack *b, t_stack *a)
 			if (!b->target && (b->nbr > (ft_findmax(a))->nbr || b->nbr < (ft_findmin(a))->nbr))
 			{
 				b->target = ft_findmin(tmpa);
-				printf("AQUI EM if (a->nbr(%d) > (ft_findmax(tmpb))->nbr(%d) || a->nbr(%d) < (ft_findmin(tmpb))->nbr)(%d)\n", a->nbr, (ft_findmax(tmpb))->nbr, a->nbr, (ft_findmin(tmpb))->nbr);
+				printf("AQUI EM if (a->nbr(%d) > (ft_findmax(tmpa))->nbr(%d) || a->nbr(%d) < (ft_findmin(tmpa))->nbr)(%d)\n", a->nbr, (ft_findmax(tmpa))->nbr, a->nbr, (ft_findmin(tmpa))->nbr);
 			}
 			else if (b->nbr < (ft_findmax(a))->nbr && b->nbr > (ft_findmin(a))->nbr)
 			{
 			printf("\033[3;35mENTRAMOS NA SEGUNDA CONDITION e targetnbr(%ld)\n\033[0m", targetnbr);
-				if ((b->nbr > tmpa->nbr) && (ft_abs(b->nbr - tmpa->nbr) < targetnbr))
+				if ((b->nbr < tmpa->nbr) && (ft_abs(b->nbr - tmpa->nbr) < targetnbr))
 				{
-					printf("\033[35mif ( a->nbr(%d) > tmpb->nbr(%d) && ft_abs(a->nbr(%d) - tmpb->nbr(%d))(%d) < targetnbr(%ld))\n\033[0m", a->nbr, tmpb->nbr, a->nbr, tmpb->nbr, ft_abs(a->nbr - tmpb->nbr), targetnbr);
+					printf("\033[35mif ( a->nbr(%d) > tmpa->nbr(%d) && ft_abs(a->nbr(%d) - tmpa->nbr(%d))(%d) < targetnbr(%ld))\n\033[0m", a->nbr, tmpa->nbr, a->nbr, tmpa->nbr, ft_abs(a->nbr - tmpa->nbr), targetnbr);
 					b->target = tmpa;
 					targetnbr = ft_abs(b->nbr - tmpa->nbr);
 					//printf("\033[35mft_abs(a->nbr(%d) - tmpb->nbr(%d))(%d)\n\033[0m", a->nbr, tmpb->nbr, ft_abs(a->nbr - tmpb->nbr));
@@ -142,10 +139,10 @@ void	ft_settarget_b(t_stack *b, t_stack *a)
 				}
 			}
 			printf("\033[35mVALOR DE A a->nbr(%d)\n\033[0m", tmpa->nbr);
-			if (a->target)
-				printf("\033[32mSAINDO DE SETTARGET\nonde b->nbr(%d) b->target->nbr(%d) targetnbr(%ld)\033[0m\n", b->nbr, b->target->nbr, targetnbr);
+			if (b->target)
+				printf("\033[32mSAINDO DE SETTARGETB\nonde b->nbr(%d) b->target->nbr(%d) targetnbr(%ld)\033[0m\n", b->nbr, b->target->nbr, targetnbr);
 			else
-				printf("\033[32mSAINDO DE SETTARGET\nonde b->nbr(%d) b->target->nbr(%p) targetnbr(%ld)\033[0m\n", b->nbr, b->target, targetnbr);
+				printf("\033[32mSAINDO DE SETTARGETB\nonde b->nbr(%d) b->target->nbr(%p) targetnbr(%ld)\033[0m\n", b->nbr, b->target, targetnbr);
 			tmpa = tmpa->next;
 		}
 		b = b->next;

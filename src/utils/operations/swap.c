@@ -6,12 +6,26 @@
 /*   By: zombunga <zombunga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 16:53:46 by zombunga          #+#    #+#             */
-/*   Updated: 2024/10/18 11:01:38 by zombunga         ###   ########.fr       */
+/*   Updated: 2024/10/22 19:09:24 by zombunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/push_swap.h"
+/*static void	ft_swap(t_stack **top)
+{
+	t_stack	*second;
 
+	if (!(*top) || !(*top)->next)
+		return ;
+	second = (*top)->next;
+	(*top)->prev = second;
+	(*top)->next = second->next;
+	if (second->next)
+		second->next->prev = (*top);
+	second->prev = NULL;
+	second->next = (*top);
+	(*top) = second;
+}*/
 static void	ft_swap(t_stack **top)
 {
 	t_stack	*second;
@@ -19,6 +33,7 @@ static void	ft_swap(t_stack **top)
 	second = (*top)->next;
 	(*top)->prev = second;
 	(*top)->next = second->next;
+	second->next->prev = (*top);
 	second->prev = NULL;
 	second->next = (*top);
 	(*top) = second;

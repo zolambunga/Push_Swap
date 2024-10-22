@@ -6,7 +6,7 @@
 /*   By: zombunga <zombunga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 23:09:08 by zombunga          #+#    #+#             */
-/*   Updated: 2024/10/22 07:30:01 by zombunga         ###   ########.fr       */
+/*   Updated: 2024/10/22 19:08:45 by zombunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static void	printlist(t_stack *a, t_stack *b)
 	printf ("\033[35m====pilha b====\033[0m\n");
 	while (tmp)
 	{
-		printf("%d\n", tmp->nbr);
+		printf("[%d]%d->push_cost(%d)\n", tmp->index, tmp->nbr, tmp->push_cost);
 		tmp = tmp->next;
 	}
 	printf ("\033[35m===============\033[0m\n");
@@ -69,8 +69,27 @@ static t_stack	*ft_sort_three(t_stack *list)
 	printf("\033[35mlist->nbr = %d\033[0m\n", list->nbr);
 	printf("\033[34mlist->next->nbr = %d\033[0m\n", list->next->nbr);
 	printf("\033[36mlist->next->next->nbr = %d\033[0m\n", list->next->next->nbr);
-	printf("\033[37mlist->next->next->next = %p\033[0m\n", list->next->next->next);
+	//printf("\033[37mlist->next->next->next = %p\033[0m\n", list->next->next->next);
+	t_stack *a;
+	a = list;
+	while(a)
+	{
+
+		printf("a->nbr(%d)\n", a->nbr);	
+		if(!a->next)
+		{
+			break;
+		}
+		a = a->next;
 	}
+	while(a)
+	{
+		printf("HOLEE a->nbr(%d)\n", a->nbr);
+		a = a->prev;
+	}
+	//printf("\033[37mlist->next->next->next = %p\033[0m\n", list->next->next->next);
+	}
+	printlist(NULL, list);
 	return (list);
 }
 
@@ -100,15 +119,18 @@ static t_stack	*ft_sort_big(t_stack *a, t_stack *b)
 		//printf("valor de i aqui dentro = %d\n", i);
 	}
 		a = ft_sort_three(a);
-	while (*b)
+	while (b)
 	{
-		ft_update_index(b);
 		ft_update_index(a);
-		ft_settarget_a(a, b);
-		ft_pushcost(a, b);
+		ft_update_index(b);
+		
+		ft_settarget_b(b, a);
+		//ft_pushcost(a, b);
+		printlist(a, b);
 		ft_btoa(&b, &a);
 		//printf("valor de i aqui dentro = %d\n", i);
 	}
+	ft_update_index(a);
 	printlist(a, b);
 	return (a);
 }

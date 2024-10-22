@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zombunga <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: zombunga <zombunga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 20:16:25 by zombunga          #+#    #+#             */
-/*   Updated: 2024/10/11 14:47:46 by zombunga         ###   ########.fr       */
+/*   Updated: 2024/10/22 16:50:13 by zombunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,11 +66,6 @@ int	main(int ac, char **av)
 	ft_verify_args((ac + 1), (av+1), false);
 	av = ft_splitmat(av + 1, ' ');
 	i = ft_matlen(av);
-	/*if ((ac - 1) < i)
-	{
-		ft_free(av, NULL);
-		ft_error();
-	}*/
 	ft_verify_args(i, av, true);
 	if (!ft_thereis_duplicate(av) && !ft_issorted(av, NULL))
 	{
@@ -78,5 +73,6 @@ int	main(int ac, char **av)
 		a = ft_sort(a, b, i);
 	}
 	ft_free(av, a);
+	//ft_free(NULL, b);
 	return (0);
 }

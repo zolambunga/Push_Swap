@@ -6,7 +6,7 @@
 /*   By: zombunga <zombunga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/19 14:50:36 by zombunga          #+#    #+#             */
-/*   Updated: 2024/10/22 06:48:38 by zombunga         ###   ########.fr       */
+/*   Updated: 2024/10/22 19:26:55 by zombunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,24 +65,15 @@ void ft_atob(t_stack **a, t_stack **b)
 
 void    ft_btoa(t_stack **b, t_stack **a)
 {
-	t_stack	*cheap;
-
-	cheap = ft_findmin_cost(*b);
-
-    if (!ft_isontop(cheap, (*b)))
-    {
-            if (cheap->midpoint_up)
-                ft_rb(b, true);
-            else
-                ft_rrb(b, true);
-    }
-    if (!ft_isontop(cheap->target, (*a)))
-    {
-            if (cheap->target->midpoint_up)
-                ft_ra(b, true);
-            else
-                ft_rra(b, true);
-    }
-        if (ft_isontop(cheap->target, (*b)))
-            ft_pa(b, a);
+	printf("dentro de ft_btoa\n");
+	while (!ft_isontop((*b)->target, (*a)))
+	{
+			if ((*b)->target->midpoint_up)
+				ft_ra(a, true);
+			else
+ 				ft_rra(a, true);
+	}
+	ft_pa(a, b);
+	printf("ft_btoa(t_stack **b, t_stack **a) FORAAAAA\n");
+	printlist(*a, *b);
 }

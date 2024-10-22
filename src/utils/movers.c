@@ -6,7 +6,7 @@
 /*   By: zombunga <zombunga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/19 14:50:36 by zombunga          #+#    #+#             */
-/*   Updated: 2024/10/22 19:26:55 by zombunga         ###   ########.fr       */
+/*   Updated: 2024/10/22 20:09:43 by zombunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,13 +59,13 @@ void ft_atob(t_stack **a, t_stack **b)
 	}
 		ft_pb(a, b);
 
-    printlist(*a, *b);
-    printf("\033[41mcheap->nbr(%d) (*a)->nbr(%d) (*a)->target->nbr(%d) (*a)->push_cost(%d)|(*b)->nbr(%d) (*b)->push_cost(%d)\033[0m\n\n", cheap->nbr,(*a)->nbr, (*a)->target->nbr, (*a)->push_cost, (*b)->nbr, (*b)->push_cost);
+    //printlist(*a, *b);
+    //printf("\033[41mcheap->nbr(%d) (*a)->nbr(%d) (*a)->target->nbr(%d) (*a)->push_cost(%d)|(*b)->nbr(%d) (*b)->push_cost(%d)\033[0m\n\n", cheap->nbr,(*a)->nbr, (*a)->target->nbr, (*a)->push_cost, (*b)->nbr, (*b)->push_cost);
 }
 
 void    ft_btoa(t_stack **b, t_stack **a)
 {
-	printf("dentro de ft_btoa\n");
+	//printf("dentro de ft_btoa\n");
 	while (!ft_isontop((*b)->target, (*a)))
 	{
 			if ((*b)->target->midpoint_up)
@@ -74,6 +74,6 @@ void    ft_btoa(t_stack **b, t_stack **a)
  				ft_rra(a, true);
 	}
 	ft_pa(a, b);
-	printf("ft_btoa(t_stack **b, t_stack **a) FORAAAAA\n");
-	printlist(*a, *b);
+	//printf("ft_btoa(t_stack **b, t_stack **a) FORAAAAA\n");
+	//printlist(*a, *b);
 }

@@ -6,7 +6,7 @@
 /*   By: zombunga <zombunga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 20:11:23 by zombunga          #+#    #+#             */
-/*   Updated: 2024/10/19 16:41:54 by zombunga         ###   ########.fr       */
+/*   Updated: 2024/10/22 20:08:37 by zombunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,46 +81,35 @@ static int	ft_isin_accepted_nbrrange(char **av)
 
 static int	ft_isvalid(char **av)
 {
-	int	i;
-	int	j;
+	t_struct cnt;
 	int	triger;
 
-	i = 0;
-	while (av[i])
+	cnt.i = 0;
+	while (av[cnt.i])
 	{
 		triger = 0;
-		j = 0;
-		while (av[i][j])
+		cnt.j = 0;
+		while (av[cnt.i][cnt.j])
 		{
-			//printf("av[i][j] = |%c|\nav[i][j+1] = |%c|\n", av[i][j], av[i][j+1]);
-			if ((!ft_isdigit(av[i][j]) && !ft_issign_space(av[i][j]))
-			|| (!ft_isdigit(av[i][j]) && !ft_isdigit_space(av[i][j + 1]))
-			|| (ft_isdigit(av[i][j]) && ft_issign(av[i][j + 1])))
+			if ((!ft_isdigit(av[cnt.i][cnt.j]) && !ft_issign_space(av[cnt.i][cnt.j]))
+			|| (!ft_isdigit(av[cnt.i][cnt.j]) && !ft_isdigit_space(av[cnt.i][cnt.j + 1]))
+			|| (ft_isdigit(av[cnt.i][cnt.j]) && ft_issign(av[cnt.i][cnt.j + 1])))
 				return (0);
-			if (ft_isdigit(av[i][j]))
+			if (ft_isdigit(av[cnt.i][cnt.j]))
 				triger++;
-			j++;
+			cnt.j++;
 		}
 		if (triger == 0)
-		{
-			printf("triger é %d\n", triger);
 			return (0);
-		}
-		i++;
+		cnt.i++;
 	}
 	return (1);
 }
 
 void	ft_verify_args(int ac, char **av, bool freeable)
 {
-	int	i;
-	int	j;
-
-	i = 0;
-	j = 0;
 	if (!ft_isvalid(av))
 	{
-		//printf("invalid\n");
 		if (freeable)
 			ft_free(av, NULL);
 		ft_error();

@@ -6,7 +6,7 @@
 /*   By: zombunga <zombunga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 20:11:56 by zombunga          #+#    #+#             */
-/*   Updated: 2024/10/22 16:07:49 by zombunga         ###   ########.fr       */
+/*   Updated: 2024/10/23 14:39:42 by zombunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void		ft_rr(t_stack **topa, t_stack **topb);
 void		ft_ss(t_stack **topa, t_stack **topb);
 
 void		ft_update_index(t_stack *stack);
-void		ft_pushcost(t_stack *a, t_stack *b);
+void		ft_pushcost(t_stack *a, t_stack *b, int len_a, int len_b);
 void		ft_settarget_a(t_stack *a, t_stack *b);
 void		ft_settarget_b(t_stack *b, t_stack *a);
 void		ft_atob(t_stack **a, t_stack **b);

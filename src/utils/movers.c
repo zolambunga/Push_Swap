@@ -6,7 +6,7 @@
 /*   By: zombunga <zombunga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/19 14:50:36 by zombunga          #+#    #+#             */
-/*   Updated: 2024/10/22 20:09:43 by zombunga         ###   ########.fr       */
+/*   Updated: 2024/10/23 12:50:42 by zombunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,9 @@ void ft_atob(t_stack **a, t_stack **b)
 	while (!ft_isontop(cheap, (*a)))
 	{
 		if (cheap->midpoint_up)
-			ft_ra(&cheap, true);
+			ft_ra(a, true);
 		else
-			ft_rra(&cheap, true);
+			ft_rra(a, true);
 	}
 
 	while (!ft_isontop(cheap->target, (*b)))

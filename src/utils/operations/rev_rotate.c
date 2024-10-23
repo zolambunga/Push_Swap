@@ -6,7 +6,7 @@
 /*   By: zombunga <zombunga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 16:48:01 by zombunga          #+#    #+#             */
-/*   Updated: 2024/10/22 18:14:49 by zombunga         ###   ########.fr       */
+/*   Updated: 2024/10/23 12:53:13 by zombunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,9 @@ static void	rev_rotate(t_stack **top)
 	bottom->next = (*top);
 	(*top)->prev = bottom;
 	(*top) = bottom;
-	printf("bottom->nbr(%d)\n", bottom->nbr);
-	printf("bottom->prev->nbr(%d)\n", bottom->prev->nbr);
-	printf("bottom->prev->next->nbr(%d)\n", bottom->prev->next->nbr);
+	//printf("bottom->nbr(%d)\n", bottom->nbr);
+	//printf("bottom->prev->nbr(%d)\n", bottom->prev->nbr);
+	//printf("bottom->prev->next->nbr(%d)\n", bottom->prev->next->nbr);
 	bottom->prev->next = NULL;
 	
 }
@@ -56,7 +56,7 @@ t_stack	*ft_rra(t_stack **top, bool print)
 	rev_rotate(top);
 	if (print)
 		write(1, "rra\n", 4);
-	printlist(*top, NULL);
+	//printlist(*top, NULL);
 	return (*top);
 }
 

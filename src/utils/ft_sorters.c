@@ -6,7 +6,7 @@
 /*   By: zombunga <zombunga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 23:09:08 by zombunga          #+#    #+#             */
-/*   Updated: 2024/10/22 20:16:34 by zombunga         ###   ########.fr       */
+/*   Updated: 2024/10/23 15:03:29 by zombunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,18 +108,24 @@ static t_stack	*ft_sort_big(t_stack *a, t_stack *b)
 	if (ft_lst_size(a) != 3 && !ft_issorted(NULL, a))
 		ft_pb(&a, &b);
 	//printf("valor de i = %d\n", i);
-	//printlist(a, b);
+	printlist(a, b);
 	//printf("estou a ir ao while, onde\nwhile (i(%d)-- > 3 && !ft_issorted(NULL, a))\n", i);
 	while (ft_lst_size(a) != 3 && !ft_issorted(NULL, a))
 	{
 		ft_update_index(b);
 		ft_update_index(a);
 		ft_settarget_a(a, b);
-		ft_pushcost(a, b);
+		ft_pushcost(a, b, ft_lst_size(a), ft_lst_size(b));
+		printlist(a, b);
+		printf("==============================\n");
 		ft_atob(&a, &b);
+		ft_update_index(b);
+		ft_update_index(a);
+		printlist(a, b);
 		//printf("valor de i aqui dentro = %d\n", i);
 	}
 		a = ft_sort_three(a);
+		printlist(a, b);
 	while (b)
 	{
 		ft_update_index(a);
@@ -127,14 +133,15 @@ static t_stack	*ft_sort_big(t_stack *a, t_stack *b)
 		
 		ft_settarget_b(b, a);
 		//ft_pushcost(a, b);
-		printlist(a, b);
+		
 		ft_btoa(&b, &a);
+		printlist(a, b);
 		//printf("valor de i aqui dentro = %d\n", i);
 	}
 	while(!ft_issorted(NULL, a))
 		ft_rra(&a, true);
 	//ft_update_index(a);
-	//printlist(a, b);
+	printlist(a, b);
 	return (a);
 }
 

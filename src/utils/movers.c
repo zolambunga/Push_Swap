@@ -6,7 +6,7 @@
 /*   By: zombunga <zombunga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/19 14:50:36 by zombunga          #+#    #+#             */
-/*   Updated: 2024/10/23 12:50:42 by zombunga         ###   ########.fr       */
+/*   Updated: 2024/10/23 15:31:06 by zombunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,21 +18,21 @@ static void	printlist(t_stack *a, t_stack *b)
 	t_stack		*tmp;
 
 	tmp = b;
-	printf ("\033[35m====pilha b====\033[0m\n");
+	//printf ("\033[35m====pilha b====\033[0m\n");
 	while (tmp)
 	{
-		printf("%d\n", tmp->nbr);
+	//	printf("%d\n", tmp->nbr);
 		tmp = tmp->next;
 	}
-	printf ("\033[35m===============\033[0m\n");
+	//printf ("\033[35m===============\033[0m\n");
 	tmp = a;
-	printf ("\033[36m====pilha a====\033[0m\n");
+	//printf ("\033[36m====pilha a====\033[0m\n");
 	while (tmp)
 	{
-		printf("|%d|%d->push_cost(%d)\n", tmp->index, tmp->nbr, tmp->push_cost);
+	//	printf("|%d|%d->push_cost(%d)\n", tmp->index, tmp->nbr, tmp->push_cost);
 		tmp = tmp->next;
 	}
-	printf ("\033[36m===============\033[0m\n\033[32m---------------\033[0m\n");
+	//printf ("\033[36m===============\033[0m\n\033[32m---------------\033[0m\n");
 }
 /////////////////////////////////||||||||||||||||||\\\\\\\\\\\//
 
@@ -54,7 +54,7 @@ void ft_atob(t_stack **a, t_stack **b)
 		//printf("\033[36mlist->next->next->nbr = %d\033[0m\n", list->next->next->nbr);
 		if (cheap->target->midpoint_up)
 			ft_rb(b, true);
-		else
+		else /*if!cheap->target->midpoint_up*/
 			ft_rrb(b, true);
 	}
 		ft_pb(a, b);

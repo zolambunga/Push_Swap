@@ -6,7 +6,7 @@
 /*   By: zombunga <zombunga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 00:24:11 by zombunga          #+#    #+#             */
-/*   Updated: 2024/10/19 17:30:31 by zombunga         ###   ########.fr       */
+/*   Updated: 2024/10/23 16:23:59 by zombunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,30 +47,41 @@ int	ft_lst_size(t_stack *lst)
 	return (i);
 }
 
+static int	ft_isspace(char c)
+{
+	return (c == 32 || (c >= 9 && c <= 13));
+}
+
+static int	ft_get_sign(const char *str, int *i)
+{
+	int	isneg;
+
+	isneg = 1;
+	if (str[*i] == '-' || str[*i] == '+')
+	{
+		if (str[*i] == '-')
+			isneg = -1;
+		(*i)++;
+	}
+	return (isneg);
+}
+
 long long int	ft_atoll_pushswap(const char *str)
 {
-	int				i;
+	int				i = 0;
 	int				isneg;
-	long long int	nbr;
+	long long int	nbr = 0;
 
-	i = 0;
-	nbr = 0;
-	isneg = 1;
-	while (str[i] != '\0' && (str[i] == 32 || str[i] == '\t' || str[i] == '\n'
-			|| str[i] == '\r' || str[i] == '\v' || str[i] == '\f'))
+	while (ft_isspace(str[i]))
 		i++;
-	if (str[i] != '\0' && str[i] == '-')
-	{
-		isneg = -1;
-		i++;
-	}
-	else if (str[i] == '+')
-		i++;
-	while (str[i] != '\0' && ft_isdigit(str[i]))
+	isneg = ft_get_sign(str, &i);
+	while (str[i] && str[i] >= '0' && str[i] <= '9')
 	{
 		nbr = (nbr * 10) + (str[i++] - '0');
-		if (nbr > INT_MAX || nbr < INT_MIN)
-			return (nbr);
+		if (nbr * isneg > INT_MAX)
+			return (nbr * isneg);
+		if (nbr * isneg < INT_MIN)
+			return (nbr * isneg);
 	}
 	return (nbr * isneg);
 }

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   algorithm_to_a.c                                   :+:      :+:    :+:   */
+/*   algorithm.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zombunga <zombunga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/18 11:52:47 by zombunga          #+#    #+#             */
-/*   Updated: 2024/10/24 20:47:22 by zombunga         ###   ########.fr       */
+/*   Updated: 2024/10/24 23:07:36 by zombunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,9 +87,7 @@ void	ft_settarget_b(t_stack *b, t_stack *a)
 		{
 			if (!b->target && (b->nbr > (ft_findmax(a))->nbr
 					|| b->nbr < (ft_findmin(a))->nbr))
-			{
 				b->target = ft_findmin(tmpa);
-			}
 			else if (b->nbr < (ft_findmax(a))->nbr
 				&& b->nbr > (ft_findmin(a))->nbr)
 			{

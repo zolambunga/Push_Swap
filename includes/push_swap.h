@@ -6,7 +6,7 @@
 /*   By: zombunga <zombunga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 20:11:56 by zombunga          #+#    #+#             */
-/*   Updated: 2024/10/24 20:04:04 by zombunga         ###   ########.fr       */
+/*   Updated: 2024/10/24 22:55:25 by zombunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,11 @@ t_stack				*ft_findmin(t_stack *stack);
 t_stack				*ft_findmax(t_stack *stack);
 t_stack				*ft_findmin_cost(t_stack *stack);
 t_stack				*ft_lst_findlast(t_stack *stack);
+
+void				ft_final_sort(t_stack **a);
+void				ft_send_from_b_to_a(t_stack **a, t_stack **b);
+void				ft_send_two_numbers_to_a(t_stack **a, t_stack **b);
+void				ft_send_to_b_until_a_is_three(t_stack **a, t_stack **b);
 
 int					ft_abs(int num);
 int					ft_isontop(t_stack *node, t_stack *top);

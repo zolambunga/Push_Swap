@@ -6,74 +6,52 @@
 /*   By: zombunga <zombunga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 23:09:08 by zombunga          #+#    #+#             */
-/*   Updated: 2024/10/24 20:51:08 by zombunga         ###   ########.fr       */
+/*   Updated: 2024/10/24 22:37:35 by zombunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/push_swap.h"
 
-static t_stack	*ft_sort_two(t_stack *list)
+static t_stack	*ft_sort_two(t_stack *a)
 {
-	list = ft_sa(&list, true);
-	return (list);
+	a = ft_sa(&a, true);
+	return (a);
 }
 
-static t_stack	*ft_sort_three(t_stack *list)
+static t_stack	*ft_sort_three(t_stack *a)
 {
 	t_stack	*a1;
 	t_stack	*a2;
 	t_stack	*a3;
 
-	while (!ft_issorted(NULL, list))
+	while (!ft_issorted(NULL, a))
 	{
-		a1 = list;
-		a2 = list->next;
-		a3 = list->next->next;
+		a1 = a;
+		a2 = a->next;
+		a3 = a->next->next;
 		if ((a1->nbr < a2->nbr) && (a2->nbr > a3->nbr) && (a1->nbr < a3->nbr)
 			|| ((a1->nbr < a2->nbr) && (a2->nbr > a3->nbr)
 				&& (a1->nbr > a3->nbr)))
-			list = ft_rra(&list, true);
+			a = ft_rra(&a, true);
 		else if ((a1->nbr > a2->nbr) && (a2->nbr < a3->nbr)
 			&& (a1->nbr > a3->nbr) || ((a1->nbr > a2->nbr)
 				&& (a2->nbr > a3->nbr) && (a1->nbr > a3->nbr)))
-			list = ft_ra(&list, true);
+			a = ft_ra(&a, true);
 		else if ((a1->nbr > a2->nbr) && (a2->nbr < a3->nbr)
 			&& (a1->nbr < a3->nbr))
-			list = ft_sa(&list, true);
+			a = ft_sa(&a, true);
 	}
-	ft_update_index(list, true);
-	return (list);
+	ft_update_index(a, true);
+	return (a);
 }
 
 static t_stack	*ft_sort_big(t_stack *a, t_stack *b)
 {
-	if (ft_lst_size(a) != 3 && !ft_issorted(NULL, a))
-		ft_pb(&a, &b);
-	if (ft_lst_size(a) != 3 && !ft_issorted(NULL, a))
-		ft_pb(&a, &b);
-	while (ft_lst_size(a) != 3 && !ft_issorted(NULL, a))
-	{
-		ft_update_index(b, true);
-		ft_update_index(a, true);
-		ft_settarget_a(a, b);
-		ft_pushcost(a, b, ft_lst_size(a), ft_lst_size(b));
-		ft_atob(&a, &b);
-	}
+	ft_send_two_numbers_to_a(&a, &b);
+	ft_send_to_b_until_a_is_three(&a, &b);
 	a = ft_sort_three(a);
-	while (b)
-	{
-		ft_update_index(a, true);
-		ft_update_index(b, true);
-		ft_settarget_b(b, a);
-		ft_btoa(&b, &a);
-	}
-	while (!ft_issorted(NULL, a))
-	{
-		if ((ft_findmin(a))->midpoint_up)
-			ft_ra(&a, true);
-		else
-			ft_rra(&a, true);
-	}
+	ft_send_from_b_to_a(&a, &b);
+	ft_final_sort(&a);
 	return (a);
 }
 

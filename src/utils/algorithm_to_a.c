@@ -6,7 +6,7 @@
 /*   By: zombunga <zombunga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/18 11:52:47 by zombunga          #+#    #+#             */
-/*   Updated: 2024/10/23 15:59:26 by zombunga         ###   ########.fr       */
+/*   Updated: 2024/10/24 09:19:04 by zombunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ static void	ft_null_target(t_stack *stack)
 	}
 }
 
-void	ft_update_index(t_stack *stack)
+void	ft_update_index(t_stack *stack, bool null_target)
 {
 	int	i;
 	int	median;
@@ -53,7 +53,8 @@ void	ft_update_index(t_stack *stack)
 	if (!stack)
 		return ;
 	median = (ft_lst_size(stack) / 2);
-	ft_null_target(stack);
+	if (null_target)
+		ft_null_target(stack);
 	while(stack)
 	{
 		stack->index = i;
@@ -167,7 +168,7 @@ static int	ft_cost_calculus(t_stack *stack, int stack_size)
 	}
 }
 
-void    ft_pushcost(t_stack *a, t_stack *b/*target*/, int len_a, int len_b)
+void    ft_pushcost(t_stack *a, t_stack *b, int len_a, int len_b)
 {
 	t_stack	*tmpb;
 	int	to_bringa;

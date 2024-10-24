@@ -6,7 +6,7 @@
 /*   By: zombunga <zombunga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 00:24:11 by zombunga          #+#    #+#             */
-/*   Updated: 2024/10/23 16:23:59 by zombunga         ###   ########.fr       */
+/*   Updated: 2024/10/24 20:08:11 by zombunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@ t_stack	*ft_lst_findlast(t_stack *list)
 
 int	ft_lst_size(t_stack *lst)
 {
-	int	i;
-	t_stack *tmp;
+	int		i;
+	t_stack	*tmp;
 
 	i = 0;
 	tmp = lst;
@@ -45,43 +45,4 @@ int	ft_lst_size(t_stack *lst)
 		i++;
 	}
 	return (i);
-}
-
-static int	ft_isspace(char c)
-{
-	return (c == 32 || (c >= 9 && c <= 13));
-}
-
-static int	ft_get_sign(const char *str, int *i)
-{
-	int	isneg;
-
-	isneg = 1;
-	if (str[*i] == '-' || str[*i] == '+')
-	{
-		if (str[*i] == '-')
-			isneg = -1;
-		(*i)++;
-	}
-	return (isneg);
-}
-
-long long int	ft_atoll_pushswap(const char *str)
-{
-	int				i = 0;
-	int				isneg;
-	long long int	nbr = 0;
-
-	while (ft_isspace(str[i]))
-		i++;
-	isneg = ft_get_sign(str, &i);
-	while (str[i] && str[i] >= '0' && str[i] <= '9')
-	{
-		nbr = (nbr * 10) + (str[i++] - '0');
-		if (nbr * isneg > INT_MAX)
-			return (nbr * isneg);
-		if (nbr * isneg < INT_MIN)
-			return (nbr * isneg);
-	}
-	return (nbr * isneg);
 }

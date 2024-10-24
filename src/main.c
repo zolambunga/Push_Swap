@@ -6,7 +6,7 @@
 /*   By: zombunga <zombunga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 20:16:25 by zombunga          #+#    #+#             */
-/*   Updated: 2024/10/24 16:09:21 by zombunga         ###   ########.fr       */
+/*   Updated: 2024/10/24 20:05:55 by zombunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ int	main(int ac, char **av)
 
 	a = NULL;
 	b = NULL;
-	ft_verify_args((ac + 1), (av+1), false);
+	ft_verify_args((ac + 1), (av + 1), false);
 	av = ft_splitmat(av + 1, ' ');
 	i = ft_matlen(av);
 	ft_verify_args(i, av, true);
@@ -72,6 +72,5 @@ int	main(int ac, char **av)
 		a = ft_sort(a, b, i);
 	}
 	ft_free(av, a);
-	//ft_free(NULL, b);
 	return (0);
 }

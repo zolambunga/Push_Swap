@@ -6,7 +6,7 @@
 /*   By: zombunga <zombunga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 20:11:23 by zombunga          #+#    #+#             */
-/*   Updated: 2024/10/24 13:03:13 by zombunga         ###   ########.fr       */
+/*   Updated: 2024/10/24 20:44:58 by zombunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,8 +81,8 @@ static int	ft_isin_accepted_nbrrange(char **av)
 
 static int	ft_isvalid(char **av)
 {
-	t_struct cnt;
-	int	triger;
+	t_struct	cnt;
+	int			triger;
 
 	cnt.i = 0;
 	while (av[cnt.i])
@@ -91,9 +91,11 @@ static int	ft_isvalid(char **av)
 		cnt.j = 0;
 		while (av[cnt.i][cnt.j])
 		{
-			if ((!ft_isdigit(av[cnt.i][cnt.j]) && !ft_issign_space(av[cnt.i][cnt.j]))
-			|| (ft_issign(av[cnt.i][cnt.j]) && ft_issign(av[cnt.i][cnt.j + 1]))
-			|| (ft_isdigit(av[cnt.i][cnt.j]) && ft_issign(av[cnt.i][cnt.j + 1])))
+			if ((!ft_isdigit(av[cnt.i][cnt.j])
+				&& !ft_issign_space(av[cnt.i][cnt.j]))
+				|| (ft_issign(av[cnt.i][cnt.j]) && ft_issign(av[cnt.i][cnt.j
+						+ 1])) || (ft_isdigit(av[cnt.i][cnt.j])
+					&& ft_issign(av[cnt.i][cnt.j + 1])))
 				return (0);
 			if (ft_isdigit(av[cnt.i][cnt.j]))
 				triger++;

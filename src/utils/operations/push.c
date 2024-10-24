@@ -6,35 +6,11 @@
 /*   By: zombunga <zombunga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 16:58:02 by zombunga          #+#    #+#             */
-/*   Updated: 2024/10/22 18:10:59 by zombunga         ###   ########.fr       */
+/*   Updated: 2024/10/24 19:48:04 by zombunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/push_swap.h"
-
-////////////////////////PARA TESTE/////////||||||||||||||||||\\\\\\\\\\\//
-static void	printlist(t_stack *a, t_stack *b)
-{
-	t_stack		*tmp;
-
-	tmp = b;
-	printf ("\033[35m====pilha b====\033[0m\n");
-	while (tmp)
-	{
-		printf("[%d]%d->push_cost(%d)\n", tmp->index, tmp->nbr, tmp->push_cost);
-		tmp = tmp->next;
-	}
-	printf ("\033[35m===============\033[0m\n");
-	tmp = a;
-	printf ("\033[36m====pilha a====\033[0m\n");
-	while (tmp)
-	{
-		printf("[%d]%d->push_cost(%d)\n", tmp->index, tmp->nbr, tmp->push_cost);
-		tmp = tmp->next;
-	}
-	printf ("\033[36m===============\033[0m\n\033[32m---------------\033[0m\n");
-}
-/////////////////////////////////||||||||||||||||||\\\\\\\\\\\//
 
 static void	push(t_stack **dst, t_stack **src)
 {

@@ -6,7 +6,7 @@
 /*   By: zombunga <zombunga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 20:40:18 by zombunga          #+#    #+#             */
-/*   Updated: 2024/10/02 21:19:24 by zombunga         ###   ########.fr       */
+/*   Updated: 2024/10/24 20:05:22 by zombunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,11 @@ long long int	ft_atoll(const char *str)
 	return (nbr);
 }
 /*
-int main()
+int	main(void)
 {
 	char i[] = "21474836489";
-	//char j[] = "90000000000000000000000000000000000000000000000000000000000000009";
+	//char j[] = "90000000000000000000000000000000000000
+	000000000000000000000000009";
 	char j[] = "9223372036854775809";
 	printf("Number %lld\n", ft_atoll(i)*10);
 	printf("Number j %lld\n", ft_atoll(j));

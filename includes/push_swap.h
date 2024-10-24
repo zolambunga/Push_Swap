@@ -6,7 +6,7 @@
 /*   By: zombunga <zombunga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 20:11:56 by zombunga          #+#    #+#             */
-/*   Updated: 2024/10/24 08:58:48 by zombunga         ###   ########.fr       */
+/*   Updated: 2024/10/24 19:10:00 by zombunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@
 typedef struct s_stack{
 	int				nbr;
 	int				index;
+	int				total_push_cost;
 	int				push_cost;
 	bool			midpoint_up;
-	bool			same;
 	struct s_stack	*target;
 	struct s_stack	*prev;
 	struct s_stack	*next;

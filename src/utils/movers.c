@@ -6,7 +6,7 @@
 /*   By: zombunga <zombunga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/19 14:50:36 by zombunga          #+#    #+#             */
-/*   Updated: 2024/10/24 09:15:03 by zombunga         ###   ########.fr       */
+/*   Updated: 2024/10/24 18:30:49 by zombunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,22 +41,36 @@ void ft_atob(t_stack **a, t_stack **b)
 	t_stack *cheap;
 
 	cheap = ft_findmin_cost(*a);
-	while (!ft_isontop(cheap, (*a)))
+	if (cheap->push_cost != cheap->target->push_cost)
 	{
-		if (cheap->midpoint_up)
-			ft_ra(a, true);
-		else
-			ft_rra(a, true);
-		ft_update_index(*a, false);
-	}
-	while (!ft_isontop(cheap->target, (*b)))
-	{
+		while (!ft_isontop(cheap, (*a)))
+		{
+			if (cheap->midpoint_up)
+				ft_ra(a, true);
+			else
+				ft_rra(a, true);
+			ft_update_index(*a, false);
+		}
+		while (!ft_isontop(cheap->target, (*b)))
+		{
 		//printf("\033[36mlist->next->next->nbr = %d\033[0m\n", list->next->next->nbr);
-		if (cheap->target->midpoint_up)
-			ft_rb(b, true);
-		else /*if!cheap->target->midpoint_up*/
-			ft_rrb(b, true);
-		ft_update_index(*b, false);
+			if (cheap->target->midpoint_up)
+				ft_rb(b, true);
+			else
+				ft_rrb(b, true);
+			ft_update_index(*b, false);
+		}
+	}
+	else
+	{
+		while (!ft_isontop(cheap, (*a)) && !ft_isontop(cheap->target, (*b)))
+		{
+			if (cheap->midpoint_up)
+				ft_rr(a, b);
+			else
+				ft_rrr(a, b);
+			ft_update_index(*a, false);
+		}
 	}
 	ft_pb(a, b);
 	ft_update_index(*a, true);
@@ -64,6 +78,7 @@ void ft_atob(t_stack **a, t_stack **b)
     //printlist(*a, *b);
     //printf("\033[41mcheap->nbr(%d) (*a)->nbr(%d) (*a)->target->nbr(%d) (*a)->push_cost(%d)|(*b)->nbr(%d) (*b)->push_cost(%d)\033[0m\n\n", cheap->nbr,(*a)->nbr, (*a)->target->nbr, (*a)->push_cost, (*b)->nbr, (*b)->push_cost);
 }
+
 
 void    ft_btoa(t_stack **b, t_stack **a)
 {

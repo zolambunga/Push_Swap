@@ -6,7 +6,7 @@
 /*   By: zombunga <zombunga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/18 11:59:57 by zombunga          #+#    #+#             */
-/*   Updated: 2024/10/19 17:14:20 by zombunga         ###   ########.fr       */
+/*   Updated: 2024/10/24 15:40:32 by zombunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ t_stack *ft_findmin_cost(t_stack *stack)
     min = stack;
     while(tmp)
     {
-        if (min->push_cost > tmp->push_cost)
+        if (min->total_push_cost > tmp->total_push_cost)
             min = tmp;
         tmp = tmp->next;
     }

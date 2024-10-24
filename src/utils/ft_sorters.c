@@ -6,7 +6,7 @@
 /*   By: zombunga <zombunga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 23:09:08 by zombunga          #+#    #+#             */
-/*   Updated: 2024/10/24 14:45:00 by zombunga         ###   ########.fr       */
+/*   Updated: 2024/10/24 19:15:23 by zombunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static void	printlist(t_stack *a, t_stack *b)
 	printf ("\033[35m====pilha b====\033[0m\n");
 	while (tmp)
 	{
-		printf("[%d]%d->push_cost(%d)\n", tmp->index, tmp->nbr, tmp->push_cost);
+		printf("[%d]%d |push_cost(%d)|->total_push_cost(%d)\n", tmp->index, tmp->nbr, tmp->push_cost, tmp->total_push_cost);
 		tmp = tmp->next;
 	}
 	printf ("\033[35m===============\033[0m\n");
@@ -29,7 +29,7 @@ static void	printlist(t_stack *a, t_stack *b)
 	printf ("\033[36m====pilha a====\033[0m\n");
 	while (tmp)
 	{
-		printf("[%d]%d->push_cost(%d)\n", tmp->index, tmp->nbr, tmp->push_cost);
+		printf("[%d]%d |push_cost(%d)|->total_push_cost(%d)\n", tmp->index, tmp->nbr, tmp->push_cost, tmp->total_push_cost);
 		tmp = tmp->next;
 	}
 	printf ("\033[36m===============\033[0m\n\033[32m---------------\033[0m\n");
@@ -117,12 +117,12 @@ static t_stack	*ft_sort_big(t_stack *a, t_stack *b)
 		ft_update_index(a, true);
 		ft_settarget_a(a, b);
 		ft_pushcost(a, b, ft_lst_size(a), ft_lst_size(b));
-		//printlist(a, b);
+	//	printlist(a, b);
 	//	printf("==============================\n");
 		ft_atob(&a, &b);
 		//ft_update_index(b);
 		//ft_update_index(a);
-		//printlist(a, b);
+	//	printlist(a, b);
 	//	printf("valor de i aqui dentro = %d\n", i);
 	}
 		a = ft_sort_three(a);
@@ -138,11 +138,16 @@ static t_stack	*ft_sort_big(t_stack *a, t_stack *b)
 		//ft_pushcost(a, b);
 		
 		ft_btoa(&b, &a);
-		//printlist(a, b);
+	//	printlist(a, b);
 		//printf("valor de i aqui dentro = %d\n", i);
 	}
-	while(!ft_issorted(NULL, a))
-		ft_rra(&a, true);
+	while (!ft_issorted(NULL, a))
+	{
+		if((ft_findmin(a))->midpoint_up)
+			ft_ra(&a, true);
+		else
+			ft_rra(&a, true);
+	}
 	//ft_update_index(a);
 	//printlist(a, b);
 	return (a);

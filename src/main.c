@@ -6,7 +6,7 @@
 /*   By: zombunga <zombunga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 20:16:25 by zombunga          #+#    #+#             */
-/*   Updated: 2024/10/22 16:50:13 by zombunga         ###   ########.fr       */
+/*   Updated: 2024/10/24 16:09:21 by zombunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ t_stack	*create_node(int n)
 	if (!list)
 		exit(1);
 	list->nbr = n;
-	list->same = false;
 	list->next = NULL;
 	list->prev = NULL;
 	return (list);

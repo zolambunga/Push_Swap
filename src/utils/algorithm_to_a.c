@@ -6,7 +6,7 @@
 /*   By: zombunga <zombunga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/18 11:52:47 by zombunga          #+#    #+#             */
-/*   Updated: 2024/10/24 09:19:04 by zombunga         ###   ########.fr       */
+/*   Updated: 2024/10/24 14:44:19 by zombunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -163,7 +163,7 @@ static int	ft_cost_calculus(t_stack *stack, int stack_size)
 	}
 	else
 	{
-	//	printf("\033[31mcost(%d)\033[0m\n", cost);
+		//printf("\033[31mcost(%d)\033[0m\n", cost);
 		return (cost);
 	}
 }
@@ -182,8 +182,17 @@ void    ft_pushcost(t_stack *a, t_stack *b, int len_a, int len_b)
 			to_bringa = ft_cost_calculus(a, len_a);
 			//printf("\033[31mdepois do ft_cost_calculus(a);\n\033[0m");
 			to_bringb = ft_cost_calculus(a->target, len_b);
+			a->target->push_cost = to_bringb;
 			//printf("\033[31mdepois do ft_cost_calculus(a->target);\n\033[0m");
-			if (!a->midpoint_up && !a->target->midpoint_up)
+			if (!a->midpoint_up && !a->target->midpoint_up
+				&& to_bringa == to_bringb)
+			{
+				a->same = true;
+				a->target->same = true;
+				a->push_cost = to_bringa;
+			}
+			else if (a->midpoint_up && a->target->midpoint_up
+				&& to_bringa == to_bringb)
 			{
 				a->same = true;
 				a->target->same = true;

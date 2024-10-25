@@ -6,7 +6,7 @@
 /*   By: zombunga <zombunga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 22:31:09 by zombunga          #+#    #+#             */
-/*   Updated: 2024/10/24 23:00:54 by zombunga         ###   ########.fr       */
+/*   Updated: 2024/10/25 02:22:02 by zombunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	ft_send_to_b_until_a_is_three(t_stack **a, t_stack **b)
 		ft_update_index(*b, true);
 		ft_update_index(*a, true);
 		ft_settarget_a(*a, *b);
-		ft_pushcost(*a, *b, ft_lst_size(*a), ft_lst_size(*b));
+		ft_pushcost(*a, ft_lst_size(*a), ft_lst_size(*b));
 		ft_atob(a, b);
 	}
 }

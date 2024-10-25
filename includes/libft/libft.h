@@ -6,13 +6,12 @@
 /*   By: zombunga <zombunga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 14:52:18 by zombunga          #+#    #+#             */
-/*   Updated: 2024/10/02 16:06:53 by zombunga         ###   ########.fr       */
+/*   Updated: 2024/10/25 01:30:56 by zombunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
-# include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
 

@@ -6,7 +6,7 @@
 /*   By: zombunga <zombunga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 23:09:08 by zombunga          #+#    #+#             */
-/*   Updated: 2024/10/24 22:37:35 by zombunga         ###   ########.fr       */
+/*   Updated: 2024/10/25 02:24:00 by zombunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,12 @@ static t_stack	*ft_sort_three(t_stack *a)
 		a1 = a;
 		a2 = a->next;
 		a3 = a->next->next;
-		if ((a1->nbr < a2->nbr) && (a2->nbr > a3->nbr) && (a1->nbr < a3->nbr)
+		if (((a1->nbr < a2->nbr) && (a2->nbr > a3->nbr) && (a1->nbr < a3->nbr))
 			|| ((a1->nbr < a2->nbr) && (a2->nbr > a3->nbr)
 				&& (a1->nbr > a3->nbr)))
 			a = ft_rra(&a, true);
-		else if ((a1->nbr > a2->nbr) && (a2->nbr < a3->nbr)
-			&& (a1->nbr > a3->nbr) || ((a1->nbr > a2->nbr)
+		else if (((a1->nbr > a2->nbr) && (a2->nbr < a3->nbr)
+				&& (a1->nbr > a3->nbr)) || ((a1->nbr > a2->nbr)
 				&& (a2->nbr > a3->nbr) && (a1->nbr > a3->nbr)))
 			a = ft_ra(&a, true);
 		else if ((a1->nbr > a2->nbr) && (a2->nbr < a3->nbr)

@@ -1,45 +1,45 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   algorithm2.c                                       :+:      :+:    :+:   */
+/*   update_index.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zombunga <zombunga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 20:46:56 by zombunga          #+#    #+#             */
-/*   Updated: 2024/10/24 20:49:10 by zombunga         ###   ########.fr       */
+/*   Updated: 2024/10/25 01:18:05 by zombunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/push_swap.h"
 
-static int	ft_cost_calculus(t_stack *stack, int stack_size)
+static void	ft_null_target(t_stack *stack)
 {
-	int	cost;
-
-	cost = (stack_size - stack->index);
-	if (stack->midpoint_up)
-		return (stack->index);
-	else
-		return (cost);
+	while (stack)
+	{
+		stack->target = NULL;
+		stack = stack->next;
+	}
 }
 
-void	ft_pushcost(t_stack *a, t_stack *b, int len_a, int len_b)
+void	ft_update_index(t_stack *stack, bool null_target)
 {
-	int		to_bringa;
-	int		to_bringb;
-	t_stack	*tmpb;
+	int	i;
+	int	median;
 
-	while (a)
+	i = 0;
+	if (!stack)
+		return ;
+	median = (ft_lst_size(stack) / 2);
+	if (null_target)
+		ft_null_target(stack);
+	while (stack)
 	{
-		tmpb = b;
-		to_bringa = ft_cost_calculus(a, len_a);
-		to_bringb = ft_cost_calculus(a->target, len_b);
-		a->push_cost = to_bringa;
-		a->target->push_cost = to_bringb;
-		if (to_bringa == to_bringb)
-			a->total_push_cost = a->push_cost;
+		stack->index = i;
+		if (i <= median)
+			stack->midpoint_up = true;
 		else
-			a->total_push_cost = to_bringa + to_bringb;
-		a = a->next;
+			stack->midpoint_up = false;
+		stack = stack->next;
+		++i;
 	}
 }

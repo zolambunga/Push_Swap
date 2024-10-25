@@ -6,11 +6,11 @@
 /*   By: zombunga <zombunga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 16:58:02 by zombunga          #+#    #+#             */
-/*   Updated: 2024/10/24 19:48:04 by zombunga         ###   ########.fr       */
+/*   Updated: 2024/10/25 01:18:25 by zombunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../includes/push_swap.h"
+#include "../../includes/push_swap.h"
 
 static void	push(t_stack **dst, t_stack **src)
 {

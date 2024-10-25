@@ -6,14 +6,14 @@
 /*   By: zombunga <zombunga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 20:11:56 by zombunga          #+#    #+#             */
-/*   Updated: 2024/10/24 22:55:25 by zombunga         ###   ########.fr       */
+/*   Updated: 2024/10/25 02:22:30 by zombunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
-# include "../libft/libft.h"
+# include "libft/libft.h"
 # include <limits.h>
 # include <stdbool.h>
 
@@ -43,7 +43,7 @@ void				ft_rr(t_stack **topa, t_stack **topb);
 void				ft_ss(t_stack **topa, t_stack **topb);
 
 void				ft_update_index(t_stack *stack, bool null_target);
-void				ft_pushcost(t_stack *a, t_stack *b, int len_a, int len_b);
+void				ft_pushcost(t_stack *a, int len_a, int len_b);
 void				ft_settarget_a(t_stack *a, t_stack *b);
 void				ft_settarget_b(t_stack *b, t_stack *a);
 void				ft_atob(t_stack **a, t_stack **b);

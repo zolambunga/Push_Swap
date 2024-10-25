@@ -6,11 +6,11 @@
 /*   By: zombunga <zombunga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 16:53:46 by zombunga          #+#    #+#             */
-/*   Updated: 2024/10/24 19:49:00 by zombunga         ###   ########.fr       */
+/*   Updated: 2024/10/25 01:18:44 by zombunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../includes/push_swap.h"
+#include "../../includes/push_swap.h"
 
 static void	ft_swap(t_stack **top)
 {

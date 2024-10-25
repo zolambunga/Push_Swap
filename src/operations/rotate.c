@@ -1,47 +1,48 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rev_rotate.c                                       :+:      :+:    :+:   */
+/*   rotate.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zombunga <zombunga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/16 16:48:01 by zombunga          #+#    #+#             */
-/*   Updated: 2024/10/24 20:14:41 by zombunga         ###   ########.fr       */
+/*   Created: 2024/10/09 00:20:07 by zombunga          #+#    #+#             */
+/*   Updated: 2024/10/25 01:18:37 by zombunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../includes/push_swap.h"
+#include "../../includes/push_swap.h"
 
-static void	rev_rotate(t_stack **top)
+static void	rotate(t_stack **top)
 {
-	t_stack	*bottom;
+	t_stack		*bottom;
 
 	bottom = ft_lst_findlast(*top);
-	bottom->next = (*top);
 	(*top)->prev = bottom;
-	(*top) = bottom;
-	bottom->prev->next = NULL;
+	bottom->next = (*top);
+	(*top) = (*top)->next;
+	(*top)->prev = NULL;
+	bottom->next->next = NULL;
 }
 
-t_stack	*ft_rra(t_stack **top, bool print)
+t_stack	*ft_ra(t_stack **top, bool print)
 {
-	rev_rotate(top);
+	rotate(top);
 	if (print)
-		write(1, "rra\n", 4);
+		write(1, "ra\n", 3);
 	return (*top);
 }
 
-t_stack	*ft_rrb(t_stack **top, bool print)
+t_stack	*ft_rb(t_stack **top, bool print)
 {
-	rev_rotate(top);
+	rotate(top);
 	if (print)
-		write(1, "rrb\n", 4);
+		write(1, "rb\n", 3);
 	return (*top);
 }
 
-void	ft_rrr(t_stack **topa, t_stack **topb)
+void	ft_rr(t_stack **topa, t_stack **topb)
 {
-	(*topa) = ft_rra(topa, false);
-	(*topb) = ft_rrb(topb, false);
-	write(1, "rrr\n", 4);
+	(*topa) = ft_ra(topa, false);
+	(*topb) = ft_rb(topb, false);
+	write(1, "rr\n", 3);
 }
